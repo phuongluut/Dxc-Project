@@ -1,0 +1,97 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="content">
+  <ion-card *ngIf="item.id">
+    <img src="{{item.picture}}" alt="">
+    <ion-card-content class="ioncard-content">
+      <h2 class="card-title">{{item.model}}</h2>
+      <p class="discription">{{item.discription}}</p>
+      <p class="discription">{{item.question}}</p>
+    </ion-card-content>
+
+    <ion-list class="ionlist">
+
+      <form (submit)="doSubmit($event)" [formGroup]="langForm">
+        <ion-list radio-group formControlName="langs">
+          <ion-item>
+            <ion-label>Excellent</ion-label>
+            <ion-radio value="excellent" checked="true"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Good</ion-label>
+            <ion-radio value="good"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Average</ion-label>
+            <ion-radio value="average"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Weak</ion-label>
+            <ion-radio value="waek"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Bab</ion-label>
+            <ion-radio value="bab"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </form>
+
+      <ion-item class="iconitem-state">
+        <button ion-button icon-left clear item-left class="item-button" (click)="goForm()">
+          <ion-icon ios="ios-build-outline" md="md-build"></ion-icon>
+          Edit
+        </button>
+        <button ion-button icon-left clear item-right class="item-button">
+          <ion-icon ios="ios-trash-outline" md="md-trash"></ion-icon>
+          Remove
+        </button>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+
+  <ion-card class="ioncard-img">
+    <img src="/assets/imgs/saleoff.jpg" alt="">
+  </ion-card>
+
+
+  <!-- Form create & edit, display:none -->
+  <form class="createForm">
+    <ion-col>
+      <ion-list insert>
+        <h3 class="ion-title">Survey Infomation</h3>
+
+        <ion-item class="ionitem-form">
+          <p item-start>Name</p>
+          <input type="text" placeholder="Survey name" name="model" item-end required>
+        </ion-item>
+
+        <ion-item class="ionitem-form">
+          <p item-start>Description</p>
+          <input type="text" placeholder="Survey discription" item-end name="model">
+        </ion-item>
+
+        <ion-item class="ionitem-form">
+          <p item-start>Thumbnail</p>
+          <input type="text" placeholder="Survey thumbnail" item-end name="model">
+        </ion-item>
+        <hr>
+        <ion-item class="ionitem-form">
+          <button ion-button item-start class="btnClear">Clear</button>
+          <button ion-button item-end class="btnOk">OK</button>
+        </ion-item>
+
+      </ion-list>
+    </ion-col>
+
+  </form>
+
+  <!--hide form -->
+  <div class="wrapper" (click)="outForm()"></div>
+</ion-content>

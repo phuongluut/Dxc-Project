@@ -1,0 +1,54 @@
+page-login {
+
+}
+*{
+    font-family: segoe ui light;
+}
+page-login {
+    .tile{
+        margin-top: 0px;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 70px;
+        padding-bottom: 30px;
+        color: white;
+        
+    }
+    .icon{
+        font-size: 100px;
+        margin-bottom: 0.2em;
+    }
+    [col-12]{
+        text-align: center;
+    }
+    .content{
+        // background:rgb(57, 57, 57);
+        background-image: url('/assets/imgs/logo.png');
+        background: #333333; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #333333, #dd1818); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #333333, #dd1818); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+    .back-button.show-back-button{
+        display: none;
+    }
+    .content{
+        border-bottom:2px solid #1e272e ;
+      }
+    .user{
+        font-size: 50px;
+        float: left;
+    }
+    .pass{
+        font-size: 50px;
+        float: left; 
+    }
+    .fb{
+        font-size: 40px;
+        padding: 15px;
+        margin-top: 0;
+        color: white;
+    }
+    .gg{
+        font-size: 40px;
+        color: white;
+    }
+}
