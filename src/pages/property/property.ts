@@ -22,8 +22,8 @@ export class PropertyPage {
   public surveys: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private _DB: DatabaseProvider, private _ALERT: AlertController) {
     this._CONTENT = {
-      name: "CAR",
-      author: "Jayn Malik"
+      name: "",
+      author: ""
     }
   }
 
@@ -32,9 +32,8 @@ export class PropertyPage {
   }
 
   generateCollectionAndSurvey(): void {
-    this._DB.createAndPopulateSurvey(this._COLL,
-      this._DOC,
-      this._CONTENT)
+    this._DB.createAndPopulateDocument(this._COLL,
+      this._DOC, this._CONTENT)
       .then((data: any) => {
         console.dir(data);
       })
@@ -44,7 +43,7 @@ export class PropertyPage {
   }
 
   retrieveCollection(): void {
-    this._DB.getSurveys(this._COLL)
+    this._DB.getDocuments(this._COLL)
       .then((data) => {
         if (data.length === 0) {
           this.generateCollectionAndSurvey();
@@ -68,16 +67,17 @@ export class PropertyPage {
     this.navCtrl.push('manage-survey', { record: params, isEdited: true });
   }
 
-  // deleteSurvey(obj): void {
-  //   this._DB.deleteSurvey(this._COLL,
-  //     obj.id)
-  //     .then((data: any) => {
-  //       this.displayAlert('Success', 'The survey ' + obj.city + ' was successfully removed');
-  //     })
-  //     .catch((error: any) => {
-  //       this.displayAlert('Error', error.message);
-  //     });
-  // }
+  deleteSurvey(obj): void {
+    this._DB.deleteDocument(this._COLL,
+      obj.id)
+      .then((data: any) => {
+        this.retrieveCollection();
+        // this.displayAlert('Success', 'The survey ' + '"' + obj.name + '"' + ' was successfully removed');
+      })
+      .catch((error: any) => {
+        this.displayAlert('Error', error.message);
+      });
+  }
 
   displayAlert(title: string, message: string): void {
     let alert: any = this._ALERT.create({

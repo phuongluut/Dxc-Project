@@ -9,6 +9,7 @@ import { PropertyPage } from '../pages/property/property';
 import { environment } from '../environments/environment';
 import firebase from 'firebase';
 import { LoginPage } from '../pages/login/login';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,7 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = PropertyPage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -26,7 +27,9 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
+      { title: 'DashBoard', component: DashboardPage },
       { title: 'Survey', component: PropertyPage}
+      
     ];
 
   }

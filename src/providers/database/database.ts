@@ -18,12 +18,11 @@ export class DatabaseProvider {
     console.log('Hello DatabaseProvider Provider');
   }
 
-  createAndPopulateSurvey(collectionObj: string, docID: string, dataObj: any): Promise<any> {
+  createAndPopulateDocument(collectionObj: string, docID: string, dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this._DB
         .collection(collectionObj)
         .doc(docID)
-        .set(dataObj, { merge: true })
         .then((data: any) => {
           resolve(data);
         })
@@ -33,7 +32,7 @@ export class DatabaseProvider {
     });
   }
 
-  getSurveys(collectionObj: string): Promise<any> {
+  getDocuments(collectionObj: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this._DB.collection(collectionObj)
         .get()
@@ -55,7 +54,7 @@ export class DatabaseProvider {
     });
   }
 
-  addSurvey(collectionObj: string,
+  addDocument(collectionObj: string,
     dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this._DB.collection(collectionObj).add(dataObj)
@@ -68,7 +67,7 @@ export class DatabaseProvider {
     });
   }
 
-  deleteSurvey(collectionObj: string,
+  deleteDocument(collectionObj: string,
     docID: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this._DB
@@ -84,7 +83,7 @@ export class DatabaseProvider {
     });
   }
 
-  updateSurvey(collectionObj: string,
+  updateDocument(collectionObj: string,
     docID: string,
     dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {

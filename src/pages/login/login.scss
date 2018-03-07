@@ -1,9 +1,14 @@
-page-login {
 
-}
 *{
     font-family: segoe ui light;
 }
+.list-ios > .item-block{
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.233);
+    margin-bottom: 1.5px;
+    border-radius: 10px; 
+}
+
 page-login {
     .tile{
         margin-top: 0px;
@@ -13,6 +18,7 @@ page-login {
         color: white;
         
     }
+
     .icon{
         font-size: 100px;
         margin-bottom: 0.2em;
@@ -21,24 +27,38 @@ page-login {
         text-align: center;
     }
     .content{
-        // background:rgb(57, 57, 57);
-        background-image: url('/assets/imgs/logo.png');
-        background: #333333; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #333333, #dd1818); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #333333, #dd1818); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        background-color: rgba(135, 207, 235, 0);
+        z-index: 2;
+        background-repeat:no-repeat;
+        opacity: 0.96; 
+    }
+    .content-back{
+        background-image: url('/assets/imgs/sback1.jpg');
+        z-index:-1; 
+    }
+    .content-login{
+        z-index: 1;
+
+    }
+    .scroll-content{
+        overflow: hidden;
+        // padding: 0 !important;
+        padding: 5px;
     }
     .back-button.show-back-button{
         display: none;
     }
-    .content{
-        border-bottom:2px solid #1e272e ;
-      }
-    .user{
-        font-size: 50px;
+    // .content{
+    //     border-bottom:2px solid #1e272e ;
+    //   }
+    .icon-user{
+        font-size: 40px;
         float: left;
+
     }
-    .pass{
-        font-size: 50px;
+    .icon-pass{
+        font-size: 40px;
         float: left; 
     }
     .fb{

@@ -10,26 +10,37 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Survey</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addSurvey()">
+        <ion-icon ios="ios-add-circle-outline" md="md-add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <button ion-button block color="primary" (click)="addSurvey()">
-    Add a new survey
-  </button>
-
   <ion-list>
-    <ion-item *ngFor="let survey of surveys">
-      <h2>{{ survey.name }}</h2>
-      <p>
-        Author: {{ survey.author }}
-      </p>
-  
-  
-      <button ion-button color="secondary" (click)="updateSurvey(survey)">
-        Update this survey
-      </button>  
-    </ion-item>
+    <ion-item-sliding *ngFor="let survey of surveys">
+      <ion-item>
+        <h2>{{ survey.name }}</h2>
+        <p>
+          Author: {{ survey.author }}
+        </p>
+      </ion-item>
+      <ion-item-options side="right">
+        <ion-buttons>
+          <button ion-button icon-only (click)="updateSurvey(survey)">
+            <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-buttons>
+          <button ion-button icon-only (click)="deleteSurvey(survey)">
+            <ion-icon ios="ios-remove-circle-outline" md="md-remove-circle"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
+
 </ion-content>
