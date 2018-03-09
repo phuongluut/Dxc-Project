@@ -1,55 +1,40 @@
-<ion-header>
-
-  <!-- <ion-navbar>
-    <ion-title>Survey Management</ion-title>
-  </ion-navbar> -->
-
-</ion-header>
 <ion-content padding class="content-back">
   <ion-content padding class="content">
     <ion-content padding class="content-login">
-      <form (ngSubmit)="login()" #loginForm="ngForm">
-        <ion-grid>
+      <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
 
-          <ion-row>
-            <ion-col col-12>
-              <ion-icon ios="ios-contact-outline" md="md-contact" color="light"></ion-icon>
-              <h2 class="tile">T-survey</h2>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col>
-              <ion-list insert>
-                <ion-item>
-                  <ion-icon item-start ios="ios-person" md="md-person" class="icon-user"></ion-icon>
-                  <ion-input item-end class="txtEmail" type="text" placeholder="Your Email" name="email" [(ngModel)]="registerCredentials.email"
-                    required></ion-input>
-                </ion-item>
-
-                <ion-item>
-                  <ion-icon item-start ios="ios-key" md="md-key" class="icon-pass"></ion-icon>
-                  <ion-input item-end class="txtPass" type="password" placeholder="Your Password" name="password" [(ngModel)]="registerCredentials.password"
-                    required>
-                  </ion-input>
-                </ion-item>
-              </ion-list>
-
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col col-12 class="signup-col">
-              <button ion-button full color="light" class="submit-btn" type="submit">Login</button>
-            </ion-col>
-          </ion-row>
+        <ion-row>
           <ion-col col-12>
-            <ion-icon ios="logo-facebook" md="logo-facebook" (click)="facebokk()" class="fb"></ion-icon>
-            <ion-icon ios="logo-google" md="logo-google" class="gg"></ion-icon>
+            <ion-icon ios="ios-contact-outline" md="md-contact" color="light"></ion-icon>
+            <h2 class="tile">T-survey</h2>
           </ion-col>
+        </ion-row>
+        <ion-item>
+          <ion-icon item-start ios="ios-person" md="md-person" class="icon-user"></ion-icon>
+          <ion-input class="btn" formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>
+        </ion-item>
 
-        </ion-grid>
+        <ion-item>
+          <ion-icon item-start ios="ios-key" md="md-key" class="icon-pass"></ion-icon>
+          <ion-input class="btn" formControlName="password" type="password" placeholder="Your password" [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>
+        </ion-item>
+
+        <button ion-button block type="submit" class="submit-btn" [disabled]="!loginForm.valid">
+          Login
+        </button>
+        
       </form>
+
+      <button ion-button block clear (click)="goToSignup()" style="font-weight: bold; color: white" >
+        Create a new account
+      </button>
+
+      <button ion-button block clear (click)="goToResetPassword()" style="font-weight: bold; color: white">
+        I forgot my password
+      </button>
+      <button ion-button block clear (click)="loginGoogle()" style="font-weight: bold; color: white">
+        Google
+      </button>
     </ion-content>
   </ion-content>
 </ion-content>

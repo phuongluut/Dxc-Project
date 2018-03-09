@@ -10,6 +10,9 @@ import { environment } from '../environments/environment';
 import firebase from 'firebase';
 import { LoginPage } from '../pages/login/login';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { ParticipantPage } from '../pages/participant-survey/participant-survey';
+import { ManageSurveyPage} from '../pages/manage-survey/manage-survey';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -27,11 +30,22 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'DashBoard', component: DashboardPage },
-      { title: 'Survey', component: PropertyPage}
+      { title: 'Survey', component: ParticipantPage},
+      { title: 'Quickpoll', component: ManageSurveyPage},
+      { title: 'Logout', component: LoginPage }
+      
       
     ];
-
+    //1
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        this.rootPage = LoginPage;
+        unsubscribe();
+      } else {
+        this.rootPage = HomePage;
+        unsubscribe();
+      }
+    });
   }
 
   initializeApp() {

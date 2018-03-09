@@ -1,55 +1,92 @@
-
-import { PropertyPage } from './../property/property';
-import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
-import { DashboardPage } from './../dashboard/dashboard';
 import { Component } from '@angular/core';
-import { NavController, NavParams, Loading, LoadingController, AlertController } from 'ionic-angular';
-
-
+import {
+  IonicPage,
+  Loading,
+  LoadingController,
+  NavController,
+  AlertController
+} from 'ionic-angular';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { EmailValidator } from '../../validators/email';
+import { AuthProvider } from '../../providers/auth/auth';
+import { HomePage } from '../home/home';
+import { SignupPage } from '../signup/signup';
+import { ResetPasswordPage } from '../reset-password/reset-password';
+import * as firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
+@IonicPage({
+  name: 'login'
+})
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  loading: Loading;
-  registerCredentials = { emai: '', password: '' };
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider,
-    private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
-  }
-  public login() {
-    this.showLoading();
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {
-        //login success -> DashBoard Page
-        this.navCtrl.setRoot(PropertyPage);
-      } else {
-        this.showError('Access Denied!')
-      }
-    },
-      error => {
-        this.showError(error);
-      });
-  }
-
-  public showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      dismissOnPageChange: true
+  loading: any;
+  loginForm: FormGroup;
+  constructor(
+    public navCtrl: NavController,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public authProvider: AuthProvider,
+    public formBuilder: FormBuilder, public afauth: AngularFireAuth
+  ) {
+    this.loginForm = formBuilder.group({
+      email: ['',
+        Validators.compose([Validators.required, EmailValidator.isValid])],
+      password: ['',
+        Validators.compose([Validators.minLength(6), Validators.required])]
     });
-    this.loading.present();
+  }
+  loginUser(): void {
+    if (!this.loginForm.valid) {
+      console.log(this.loginForm.value);
+    } else {
+      console.log(this.loginForm.value);
+      this.authProvider.loginUser(this.loginForm.value.email,
+        this.loginForm.value.password)
+        .then(authData => {
+          this.loading.dismiss().then(() => {
+            this.navCtrl.setRoot(HomePage);
+          });
+        },
+         error => {
+          this.loading.dismiss().then(() => {
+            let alert = this.alertCtrl.create({
+              message: error.message,
+              buttons: [
+                {
+                  text: "Ok",
+                  role: 'cancel'
+                }
+              ]
+            });
+            alert.present();
+          });
+        }
+      );
+      this.loading = this.loadingCtrl.create();
+      this.loading.present();
+    }
+  }
+   async loginGoogle(){
+     try{
+       const result =  await this.afauth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+       if(result)
+       this.navCtrl.push(HomePage);
+     }catch(e){
+        console.log(e);
+     }
+   
+    }
+  
+  goToSignup(): void {
+    this.navCtrl.push(SignupPage);
   }
 
-  public showError(text) {
-    this.loading.dismiss();
-    //create messege error
-    let alert = this.alertCtrl.create({
-      title: 'Fail',
-      subTitle: text,
-      buttons: ['OK']
-    });
-    alert.present(alert);
+  goToResetPassword(): void {
+    this.navCtrl.push(ResetPasswordPage);
   }
 
 }

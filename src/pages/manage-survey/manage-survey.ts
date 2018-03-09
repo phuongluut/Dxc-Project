@@ -34,6 +34,7 @@ export class ManageSurveyPage {
   public title: string = "ADD A NEW SURVEY";
   private _COLL: string = "SURVEY";
   private answers: any = '';
+  filterItems: any;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public _FB: FormBuilder,

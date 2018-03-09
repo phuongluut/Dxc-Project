@@ -1,3 +1,21 @@
 page-home {
+    .icon-dash{
+    font-size: 30px;
+    float: right;
+    padding-right: 10px;
+    color: black;
+    z-index: 1 ;
+}
+.title{ 
+    background-color: rgb(88, 223, 174);
+    z-index: -1;
+}
+.bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+    color: black;
+}
+    .content{
+    background-color:whitesmoke;
+    }
 
 }
+

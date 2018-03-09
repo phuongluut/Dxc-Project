@@ -1,12 +1,8 @@
+
+import { PropertyPage } from './../property/property';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the DashboardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { LoginPage } from '../login/login';
 
 
 @Component({
@@ -14,12 +10,26 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'dashboard.html',
 })
 export class DashboardPage {
+  properties: Array<any>;
+
+
+  findAll() {
+    this.properties = []
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
+  pushSurvey() {
+    this.navCtrl.push(PropertyPage);
+  }
+
+  // pushRes() {
+  //   this.navCtrl.push(ResPage);
+  // }
+
+  goLogin() {
+    this.navCtrl.push(LoginPage);
   }
 
 }

@@ -1,15 +1,20 @@
 
-*{
-    font-family: segoe ui light;
-}
-.list-ios > .item-block{
-    height: 5px;
-    background-color: rgba(255, 255, 255, 0.233);
-    margin-bottom: 1.5px;
-    border-radius: 10px; 
-}
 
+        *{
+        font-family: segoe ui light;
+    }
+    .list-ios > .item-block:last-child{
+        height: 5px;
+        background-color: rgba(255, 255, 255, 0.884);
+        // margin-bottom: 1.5px;
+        border-bottom: 0;
+    }
 page-login {
+  .item-ios{
+        margin-bottom: 3px;
+        border-radius: 5px;
+        border-bottom: none;
+  }
     .tile{
         margin-top: 0px;
         font-family: 'Times New Roman', Times, serif;
@@ -18,8 +23,26 @@ page-login {
         color: white;
         
     }
+    // .btn{
+    //    border-radius: 5px;
+    // }
+    // ion-input{
+    //   border-radius: 50%;
+    // }
+   
+    .submit-btn{
+        border-radius: 5px;
+    }
+    @keyframes icon {
+    from{transform: rotateX(90deg); transition: 0.4s}
+    to{transform: rotateX(0); transition: 0.4s}
+    
+}
 
     .icon{
+        animation: icon 2s forwards;
+        // transform: rotatex(90deg);
+        // transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
         font-size: 100px;
         margin-bottom: 0.2em;
     }
@@ -36,6 +59,7 @@ page-login {
     .content-back{
         background-image: url('/assets/imgs/sback1.jpg');
         z-index:-1; 
+        background-size: cover;
     }
     .content-login{
         z-index: 1;
@@ -49,12 +73,10 @@ page-login {
     .back-button.show-back-button{
         display: none;
     }
-    // .content{
-    //     border-bottom:2px solid #1e272e ;
-    //   }
     .icon-user{
         font-size: 40px;
         float: left;
+
 
     }
     .icon-pass{

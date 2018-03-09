@@ -8,14 +8,13 @@ import { DatabaseProvider } from '../../providers/database/database';
  * Ionic pages and navigation.
  */
 
-@IonicPage({
-  name: 'page-property'
-})
+@IonicPage()
 @Component({
   selector: 'page-property',
   templateUrl: 'property.html',
 })
 export class PropertyPage {
+  filterItems: any;
   private _COLL: string = 'SURVEY';
   private _DOC: string = 'Xy76Re34SdFR1';
   private _CONTENT: any;
@@ -26,7 +25,14 @@ export class PropertyPage {
       author: ""
     }
   }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
 
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
   ionViewDidEnter() {
     this.retrieveCollection();
   }
@@ -50,11 +56,24 @@ export class PropertyPage {
         }
         else {
           this.surveys = data;
+          this.filterItems = data;
         }
       })
       .catch();
   }
+  //function search
+  getItems(input: any) {
+    let searchKeyword = input.target.value;
+    if (searchKeyword != null) {
+      this.filterItems = this.surveys.filter(survey => survey.author.toLowerCase().indexOf(searchKeyword.toLowerCase()) > -1);
+      console.log(this.filterItems);
 
+    }
+    else {
+      this.filterItems = this.surveys;
+
+    }
+  }
   addSurvey(): void {
     this.navCtrl.push('manage-survey');
   }
