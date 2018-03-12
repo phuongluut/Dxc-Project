@@ -23,35 +23,35 @@ mobiscroll.settings = {
   templateUrl: 'manage-survey.html',
 })
 export class ManageSurveyPage implements OnInit {
-  netscapeReleased = '1994-12-15T13:47:20.789';
+
 
   public form: FormGroup;
   public records: any;
   public name: string = '';
   public author: string = '';
   public docID: string = '';
-  public timeStart: DateTime;
-  public timeEnd: DateTime;
+  public timeStart: any;
+  public timeEnd: any;
   public answer: string = '';
   public isEditable: boolean = false;
   private isDisappear: boolean = false;
   public title: string = "ADD A NEW SURVEY";
   private _COLL: string = "SURVEY";
   filterItems: any;
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              public _FB: FormBuilder,
-              public _DB: DatabaseProvider,
-              private _ALERT: AlertController) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public _FB: FormBuilder,
+    public _DB: DatabaseProvider,
+    private _ALERT: AlertController) {
+    this.timeStart = this.calculateTime('+7');
 
     if (navParams.get('isEdited')) {
       let record = navParams.get('record');
-
       this.name = record.survey.name;
       this.author = record.survey.author;
       this.docID = record.survey.id;
-      // this.timeStart = record.survey.timeStart;
-      // this.timeEnd = record.survey.timeEnd;
+      this.timeStart = record.survey.timeStart;
+      this.timeEnd = record.survey.timeEnd;
       this.isEditable = true;
       this.isDisappear = true;
       this.title = 'SURVEY INFOMATION';
@@ -59,7 +59,27 @@ export class ManageSurveyPage implements OnInit {
 
   }
 
+  calculateTime(offset: any) {
+    // create Date object for current location
+    let d = new Date();
 
+    // create new Date object for different city
+    // using supplied offset
+    let nd = new Date(d.getTime() + (3600000 * offset));
+
+    return nd.toISOString();
+  }
+
+  // Determine if the client uses DST
+  stdTimezoneOffset(today: any) {
+    let jan = new Date(today.getFullYear(), 0, 1);
+    let jul = new Date(today.getFullYear(), 6, 1);
+    return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+  }
+
+  dst(today: any) {
+    return today.getTimezoneOffset() < this.stdTimezoneOffset(today);
+  }
 
   ngOnInit(): void {
     // throw new Error("Method not implemented.");
@@ -75,12 +95,12 @@ export class ManageSurveyPage implements OnInit {
   }
 
   initAnswer() {
-    return this ._FB.group({
+    return this._FB.group({
       answer: ['', Validators.required]
     })
   }
 
-  addAnswer(){
+  addAnswer() {
     const control = <FormArray>this.form.controls['answers'];
     console.log(this.answer);
     control.push(this.initAnswer());
@@ -101,13 +121,13 @@ export class ManageSurveyPage implements OnInit {
       timeStart: DateTime = this.form.controls["timeStart"].value,
       timeEnd: DateTime = this.form.controls["timeEnd"].value,
       answer: string = this.form.controls["answer"].value;
-    
+
     if (this.isEditable) {
       this._DB.updateDocument(this._COLL,
         this.docID,
         {
           name: name,
-          author: author, 
+          author: author,
           timeStart: timeStart,
           timeEnd: timeEnd
         })
@@ -121,8 +141,8 @@ export class ManageSurveyPage implements OnInit {
       this._DB.addDocument(this._COLL,
         {
           name: name,
-          author: author, 
-          timeStart: timeStart, 
+          author: author,
+          timeStart: timeStart,
           timeEnd: timeEnd
         })
         .then((data) => {

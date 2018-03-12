@@ -60,14 +60,15 @@
       <ion-input type="text" formControlName="author" [(ngModel)]="author"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Time start:</ion-label>
-      <ion-datetime displayFormat="MMMM DD ,YY HH:mm" min="1900" max="2999" formControlName="timeStart" [(ngModel)]="timeStart"></ion-datetime>
-    </ion-item>
+        <ion-item>
+          <ion-label stacked>Time start:</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD HH:mm A" [(ngModel)]="timeStart" formControlName="timeStart"></ion-datetime>
+        </ion-item>
+
 
     <ion-item>
       <ion-label stacked>Time end:</ion-label>
-      <ion-datetime displayFormat="MMMM DD ,YY HH:mm" min="1900" max="2999" formControlName="timeEnd" [(ngModel)]="timeEnd"></ion-datetime>
+      <ion-datetime displayFormat="YYYY-MM-DD HH:mm A" min="2018" max="2999" formControlName="timeEnd" [(ngModel)]="timeEnd"></ion-datetime>
     </ion-item>
 
     <div formArrayName="answers">

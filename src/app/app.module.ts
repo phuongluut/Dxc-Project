@@ -25,7 +25,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { Facebook } from '@ionic-native/facebook';
-import { AnswerPage } from '../pages/answer/answer';
 import { AnswerPageModule } from '../pages/answer/answer.module';
 
 
