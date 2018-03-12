@@ -76,15 +76,16 @@
 
           <ion-label stacked>Answer {{ i + 1 }}:</ion-label>
           <ion-input type="text" formControlName="answer"></ion-input>
-
+          <ion-icon ios="ios-close" md="md-close" item-right *ngIf="form.controls.answers.controls.length > 1" (click)="removeAnswer(i)"></ion-icon>
         </ion-item>
       </div>
 
-      <ion-buttons>
+      <ion-buttons end>
         <button ion-button icon-only (click)="addAnswer()">
-          <ion-icon ios="ios-more" md="md-more"></ion-icon>
+          <ion-icon ios="ios-add-circle-outline" md="md-add-circle"></ion-icon>
         </button>
       </ion-buttons>
     </div>
+
   </form>
 </ion-content>

@@ -7,6 +7,7 @@ import * as $ from 'jquery';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { DatabaseProvider } from '../../providers/database/database';
+import { AnswerPage } from '../answer/answer';
 
 @Component({
   selector: 'page-participant-survey',
@@ -79,7 +80,7 @@ export class ParticipantPage {
       collection: this._COLL,
       survey: obj
     };
-    this.navCtrl.push('manage-survey', { record: params, isEdited: true });
+    this.navCtrl.push('answer', { record: params, isEdited: true });
   }
 
   deleteSurvey(obj): void {

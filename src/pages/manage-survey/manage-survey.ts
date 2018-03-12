@@ -4,14 +4,17 @@ import { IonicPage, NavController, NavParams, AlertController, DateTime } from '
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Result } from './answer.interface';
-import { Answers } from './answer.interface';
+import { mobiscroll } from '@mobiscroll/angular-trial';
+
 /**
  * Generated class for the ManageSurveyPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+mobiscroll.settings = {
+  theme: 'ios'
+};
 @IonicPage({
   name: 'manage-survey'
 })
@@ -47,14 +50,16 @@ export class ManageSurveyPage implements OnInit {
       this.name = record.survey.name;
       this.author = record.survey.author;
       this.docID = record.survey.id;
-      this.timeStart = record.survey.timeStart;
-      this.timeEnd = record.survey.timeEnd;
+      // this.timeStart = record.survey.timeStart;
+      // this.timeEnd = record.survey.timeEnd;
       this.isEditable = true;
       this.isDisappear = true;
       this.title = 'SURVEY INFOMATION';
     }
 
   }
+
+
 
   ngOnInit(): void {
     // throw new Error("Method not implemented.");
@@ -93,8 +98,8 @@ export class ManageSurveyPage implements OnInit {
   saveSurvey(value: any): void {
     let name: string = this.form.controls["name"].value,
       author: string = this.form.controls["author"].value,
-      timeStart: string = this.form.controls["timeStart"].value,
-      timeEnd: string = this.form.controls["timeEnd"].value,
+      timeStart: DateTime = this.form.controls["timeStart"].value,
+      timeEnd: DateTime = this.form.controls["timeEnd"].value,
       answer: string = this.form.controls["answer"].value;
     
     if (this.isEditable) {
