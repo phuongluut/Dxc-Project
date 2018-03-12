@@ -21,7 +21,7 @@
     <ion-list>
       <ion-item-sliding *ngFor="let survey of filterItems">
         
-        <ion-item class="items">
+        <ion-item class="items" (click)="updateSurvey(survey)">
           <h2>{{ survey.name }}</h2>
           <p>
             Author: {{ survey.author }}

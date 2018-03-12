@@ -7,6 +7,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title> {{ title }} </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="saveSurvey(form.value)" [disabled]="!form.valid">
@@ -19,31 +22,31 @@
 
 
 <ion-content padding>
-  <ion-row>
+  <!-- <ion-row>
     <ion-searchbar class="search" (ionInput)="getItems($event)"></ion-searchbar>
-  </ion-row>
+  </ion-row> -->
   <ion-list>
     <ion-item-sliding *ngFor="let survey of filterItems">
-  
+
       <ion-item class="items">
         <h2>{{ survey.name }}</h2>
         <p>
           Author: {{ survey.author }}
         </p>
       </ion-item>
-  
+
       <ion-item-options side="right">
-          <ion-buttons>
-            <button ion-button icon-only (click)="updateSurvey(survey)" class="btn-u" color="dark1">
-              <ion-icon ios="ios-more" md="md-more"></ion-icon>
-            </button>
-          </ion-buttons>
-          <ion-buttons>
-            <button ion-button icon-only (click)="deleteSurvey(survey)" color="danger" class="btn-d">
-              <ion-icon ios="ios-remove-circle-outline" md="md-remove-circle"></ion-icon>
-            </button>
-          </ion-buttons>
-        </ion-item-options>
+        <ion-buttons>
+          <button ion-button icon-only (click)="updateSurvey(survey)" class="btn-u" color="dark1">
+            <ion-icon ios="ios-more" md="md-more"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-buttons>
+          <button ion-button icon-only (click)="deleteSurvey(survey)" color="danger" class="btn-d">
+            <ion-icon ios="ios-remove-circle-outline" md="md-remove-circle"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-item-options>
     </ion-item-sliding>
   </ion-list>
   <form [formGroup]="form">
@@ -59,24 +62,29 @@
 
     <ion-item>
       <ion-label stacked>Time start:</ion-label>
-      <ion-datetime displayFormat="MMMM DD ,YY HH:mm" min="1900" max="2999"></ion-datetime>
-
+      <ion-datetime displayFormat="MMMM DD ,YY HH:mm" min="1900" max="2999" formControlName="timeStart" [(ngModel)]="timeStart"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Time end:</ion-label>
-      <ion-datetime displayFormat="MMMM DD ,YY HH:mm" min="1900" max="2999"></ion-datetime>
-
+      <ion-datetime displayFormat="MMMM DD ,YY HH:mm" min="1900" max="2999" formControlName="timeEnd" [(ngModel)]="timeEnd"></ion-datetime>
     </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Answer:</ion-label>
-      <ion-buttons end>
-        <button ion-button icon-only>
-          <ion-icon ios="ion-ios-plus-outline" md="md-ios-plus-outline"></ion-icon>
+    <div formArrayName="answers">
+      <div *ngFor="let answer of form.controls.answers.controls; let i=index">
+        <ion-item [formGroupName]="i">
+
+          <ion-label stacked>Answer {{ i + 1 }}:</ion-label>
+          <ion-input type="text" formControlName="answer"></ion-input>
+
+        </ion-item>
+      </div>
+
+      <ion-buttons>
+        <button ion-button icon-only (click)="addAnswer()">
+          <ion-icon ios="ios-more" md="md-more"></ion-icon>
         </button>
       </ion-buttons>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+    </div>
   </form>
 </ion-content>

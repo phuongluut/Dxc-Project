@@ -1,9 +1,10 @@
 'use strict'
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, DateTime } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
-
+import { Result } from './answer.interface';
+import { Answers } from './answer.interface';
 /**
  * Generated class for the ManageSurveyPage page.
  *
@@ -18,10 +19,10 @@ import { DatabaseProvider } from '../../providers/database/database';
   selector: 'page-manage-survey',
   templateUrl: 'manage-survey.html',
 })
-export class ManageSurveyPage {
+export class ManageSurveyPage implements OnInit {
   netscapeReleased = '1994-12-15T13:47:20.789';
 
-  public form: any;
+  public form: FormGroup;
   public records: any;
   public name: string = '';
   public author: string = '';
@@ -33,17 +34,12 @@ export class ManageSurveyPage {
   private isDisappear: boolean = false;
   public title: string = "ADD A NEW SURVEY";
   private _COLL: string = "SURVEY";
-  private answers: any = '';
   filterItems: any;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public _FB: FormBuilder,
               public _DB: DatabaseProvider,
               private _ALERT: AlertController) {
-    this.form = _FB.group({
-      'name': ['', Validators.required],
-      'author': ['', Validators.required]
-    });
 
     if (navParams.get('isEdited')) {
       let record = navParams.get('record');
@@ -51,6 +47,8 @@ export class ManageSurveyPage {
       this.name = record.survey.name;
       this.author = record.survey.author;
       this.docID = record.survey.id;
+      this.timeStart = record.survey.timeStart;
+      this.timeEnd = record.survey.timeEnd;
       this.isEditable = true;
       this.isDisappear = true;
       this.title = 'SURVEY INFOMATION';
@@ -58,16 +56,55 @@ export class ManageSurveyPage {
 
   }
 
+  ngOnInit(): void {
+    // throw new Error("Method not implemented.");
+    this.form = this._FB.group({
+      'name': ['', Validators.required],
+      'author': ['', Validators.required],
+      'timeStart': ['', Validators.required],
+      'timeEnd': ['', Validators.required],
+      'answers': this._FB.array([
+        this.initAnswer(),
+      ])
+    });
+  }
+
+  initAnswer() {
+    return this ._FB.group({
+      answer: ['', Validators.required]
+    })
+  }
+
+  addAnswer(){
+    const control = <FormArray>this.form.controls['answers'];
+    console.log(this.answer);
+    control.push(this.initAnswer());
+  }
+
+  removeAnswer(i: number) {
+    const control = <FormArray>this.form.controls['answers'];
+    control.removeAt(i);
+  }
+
+  save(model: Result) {
+    console.log(model);
+  }
+
   saveSurvey(value: any): void {
     let name: string = this.form.controls["name"].value,
-      author: string = this.form.controls["author"].value;
+      author: string = this.form.controls["author"].value,
+      timeStart: string = this.form.controls["timeStart"].value,
+      timeEnd: string = this.form.controls["timeEnd"].value,
+      answer: string = this.form.controls["answer"].value;
     
     if (this.isEditable) {
       this._DB.updateDocument(this._COLL,
         this.docID,
         {
           name: name,
-          author: author
+          author: author, 
+          timeStart: timeStart,
+          timeEnd: timeEnd
         })
         .then((data) => {
           this.displayAlert('Success', 'The survey ' + name + ' was successfully updated');
@@ -79,7 +116,9 @@ export class ManageSurveyPage {
       this._DB.addDocument(this._COLL,
         {
           name: name,
-          author: author
+          author: author, 
+          timeStart: timeStart, 
+          timeEnd: timeEnd
         })
         .then((data) => {
           this.clearForm();
@@ -105,32 +144,6 @@ export class ManageSurveyPage {
     this.name = '';
     this.author = '';
   }
-
-  // deleteSurvey(title: string, message: string): void {
-  //   let alert: any = this._ALERT.create({
-  //     title: 'DELETE SURVEY',
-  //     message: 'Do you really want to delete this survey?',
-  //     buttons: [{
-  //       text: 'NO',
-  //       handler: data => {
-  //         console.log("No clicked!");
-  //       }
-  //     }, {
-  //       text: 'YES',
-  //       handler: () => {
-  //         this._DB.deleteSurvey(this._COLL, this.docID)
-  //         .then((data: any) => {
-  //           this.displayAlert('Success', 'The survey ' + this.name + ' was successfully removed');
-  //           this.clearForm();
-  //         })
-  //         .catch((error: any) => {
-  //           this.displayAlert('Error', error.message);
-  //         });
-  //       }
-  //     }]
-  //   });
-  //   alert.present();
-  // }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ManageSurveyPage');

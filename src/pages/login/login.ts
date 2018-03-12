@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {
   IonicPage,
-  Loading,
   LoadingController,
   NavController,
   AlertController
@@ -14,6 +13,7 @@ import { SignupPage } from '../signup/signup';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Facebook } from '@ionic-native/facebook'
 @IonicPage({
   name: 'login'
 })
@@ -30,8 +30,10 @@ export class LoginPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public authProvider: AuthProvider,
-    public formBuilder: FormBuilder, public afauth: AngularFireAuth
-  ) {
+    public formBuilder: FormBuilder, public afauth: AngularFireAuth,
+
+  ) 
+  {
     this.loginForm = formBuilder.group({
       email: ['',
         Validators.compose([Validators.required, EmailValidator.isValid])],
@@ -74,12 +76,22 @@ export class LoginPage {
      try{
        const result =  await this.afauth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
        if(result)
-       this.navCtrl.push(HomePage);
+       this.navCtrl.setRoot(HomePage);
      }catch(e){
         console.log(e);
      }
    
     }
+  async loginFace() {
+    try {
+      const result = await this.afauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+      if (result)
+        this.navCtrl.setRoot(HomePage);
+    } catch (e) {
+      console.log(e);
+    }
+
+  }
   
   goToSignup(): void {
     this.navCtrl.push(SignupPage);

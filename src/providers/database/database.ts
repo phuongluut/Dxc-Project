@@ -43,7 +43,9 @@ export class DatabaseProvider {
               obj.push({
                 id: doc.id,
                 name: doc.data().name,
-                author: doc.data().author
+                author: doc.data().author,
+                timeStart: doc.data().timeStart, 
+                timeEnd: doc.data().timeEnd
               });
             });
           resolve(obj);

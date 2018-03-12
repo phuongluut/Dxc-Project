@@ -22,8 +22,10 @@ export class PropertyPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private _DB: DatabaseProvider, private _ALERT: AlertController) {
     this._CONTENT = {
       name: "",
-      author: ""
-    }
+      author: "", 
+      timeStart: "", 
+      timeEnd: ""
+    } 
   }
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);

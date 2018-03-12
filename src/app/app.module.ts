@@ -17,12 +17,14 @@ import { ParticipantPage } from '../pages/participant-survey/participant-survey'
 import { AuthProvider } from '../providers/auth/auth';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { SignupPage } from '../pages/signup/signup';
-import { Validators } from '@angular/forms';
+import { Validators, ReactiveFormsModule } from '@angular/forms';
 import { auth } from 'firebase';
 import { ManageSurveyPageModule } from '../pages/manage-survey/manage-survey.module';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
+import { Facebook } from '@ionic-native/facebook';
+
 
 
 
@@ -36,7 +38,7 @@ import { environment } from '../environments/environment';
     ParticipantPage,
     DashboardPage,
     ResetPasswordPage,
-    SignupPage
+    SignupPage,
 
   ],
   imports: [
@@ -45,8 +47,8 @@ import { environment } from '../environments/environment';
     IonicModule.forRoot(MyApp),
     ManageSurveyPageModule,
     AngularFireModule.initializeApp(environment.firebase),
-
-  ],
+    ReactiveFormsModule
+  ],    
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -65,7 +67,8 @@ import { environment } from '../environments/environment';
     DatabaseProvider,
     AuthServiceProvider,
     AuthProvider,
-    AngularFireAuth
+    AngularFireAuth,
+    Facebook
   ]
 })
 export class AppModule {}

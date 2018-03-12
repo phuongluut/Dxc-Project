@@ -18,18 +18,21 @@ export class AuthProvider {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
-  signupUser(email: string, password: string): Promise<any> {
+  signupUser(email: string, password: string, firstname: string, lastname: string): Promise<any> {
     console.log(email,password);
-    return firebase
-      .auth()
+    return firebase.auth()
       .createUserWithEmailAndPassword(email, password)
       .then(newUser => {
         console.log(newUser);
-        // firebase
-        //   .database()
-        //   .ref('/userProfile')
-        //   .child(newUser.uid)
-        //   .set({ email: email });
+        firebase
+          // .database()     //stores the infomation inside the realtime database
+          // .ref('/USER')
+          // .child(newUser.uid)
+          // .set({ email: email, firstname: firstname, lastname: lastname });
+          .firestore()       //stores the information inside the cloud firestore
+          .collection('USER')
+          .doc(newUser.uid)
+          .set({ email: email, password: password, firstname: firstname, lastname: lastname });
       });
   }
   resetPassword(email: string): Promise<void> {

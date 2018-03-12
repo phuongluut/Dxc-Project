@@ -1,7 +1,7 @@
 <ion-content padding class="content-back">
   <ion-content padding class="content">
     <ion-content padding class="content-login">
-      <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+      <form [formGroup]="loginForm" (submit)="loginUser()" novalidate col-12>
 
         <ion-row>
           <ion-col col-12>
@@ -22,19 +22,21 @@
         <button ion-button block type="submit" class="submit-btn" [disabled]="!loginForm.valid">
           Login
         </button>
-        
+
       </form>
 
-      <button ion-button block clear (click)="goToSignup()" style="font-weight: bold; color: white" >
+      <button ion-button block clear (click)="goToSignup()" style="font-weight: bold; color: white">
         Create a new account
       </button>
 
       <button ion-button block clear (click)="goToResetPassword()" style="font-weight: bold; color: white">
         I forgot my password
       </button>
-      <button ion-button block clear (click)="loginGoogle()" style="font-weight: bold; color: white">
-        Google
-      </button>
+
+      <ion-col>
+        <ion-icon ios="logo-google" md="logo-google" class="gg" (click)="loginGoogle()"></ion-icon>
+        <ion-icon ios="logo-facebook" md="logo-facebook" class="fb" (click)="loginFace()"></ion-icon>
+      </ion-col>
     </ion-content>
   </ion-content>
 </ion-content>

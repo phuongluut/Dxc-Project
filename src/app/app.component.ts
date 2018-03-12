@@ -33,8 +33,6 @@ export class MyApp {
       { title: 'Survey', component: ParticipantPage},
       { title: 'Quickpoll', component: ManageSurveyPage},
       { title: 'Logout', component: LoginPage }
-      
-      
     ];
     //1
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {

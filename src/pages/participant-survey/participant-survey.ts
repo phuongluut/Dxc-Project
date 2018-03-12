@@ -21,7 +21,9 @@ export class ParticipantPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private _DB: DatabaseProvider, private _ALERT: AlertController) {
     this._CONTENT = {
       name: "",
-      author: ""
+      author: "",
+      timeStart: "",
+      timeEnd: ""
     }
   }
 
