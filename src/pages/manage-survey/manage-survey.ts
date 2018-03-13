@@ -4,7 +4,6 @@ import { IonicPage, NavController, NavParams, AlertController, DateTime } from '
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Result } from './answer.interface';
-import { mobiscroll } from '@mobiscroll/angular-trial';
 
 /**
  * Generated class for the ManageSurveyPage page.
@@ -12,9 +11,9 @@ import { mobiscroll } from '@mobiscroll/angular-trial';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-mobiscroll.settings = {
-  theme: 'ios'
-};
+// mobiscroll.settings = {
+//   theme: 'ios'
+// };
 @IonicPage({
   name: 'manage-survey'
 })
@@ -129,7 +128,8 @@ export class ManageSurveyPage implements OnInit {
           name: name,
           author: author,
           timeStart: timeStart,
-          timeEnd: timeEnd
+          timeEnd: timeEnd,
+          answer:answer
         })
         .then((data) => {
           this.displayAlert('Success', 'The survey ' + name + ' was successfully updated');
@@ -143,7 +143,8 @@ export class ManageSurveyPage implements OnInit {
           name: name,
           author: author,
           timeStart: timeStart,
-          timeEnd: timeEnd
+          timeEnd: timeEnd,
+          answer:answer
         })
         .then((data) => {
           this.clearForm();
