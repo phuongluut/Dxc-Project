@@ -13,5 +13,8 @@ page-participant-survey {
 .list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block{
   border: 0;
 }
+.bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{
+    color: black;
+}
 }
 

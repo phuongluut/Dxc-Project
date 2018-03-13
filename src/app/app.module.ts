@@ -1,4 +1,3 @@
-import { MbscModule } from '@mobiscroll/angular-trial';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -26,8 +25,8 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { Facebook } from '@ionic-native/facebook';
 import { AnswerPageModule } from '../pages/answer/answer.module';
-
-
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 
 
@@ -45,15 +44,15 @@ import { AnswerPageModule } from '../pages/answer/answer.module';
   
   ],
   imports: [ 
-    MbscModule,
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     ManageSurveyPageModule,
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
-    AnswerPageModule
-    
+    AnswerPageModule,
+    AngularFireAuthModule,
+    AngularFirestoreModule.enablePersistence()
   ],    
   bootstrap: [IonicApp],
   entryComponents: [

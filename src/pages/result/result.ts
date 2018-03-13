@@ -2,26 +2,23 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the AnswerPage page.
+ * Generated class for the ResultPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
-@IonicPage({
-name:'answer'
-})
+@IonicPage()
 @Component({
-  selector: 'page-answer',
-  templateUrl: 'answer.html',
+  selector: 'page-result',
+  templateUrl: 'result.html',
 })
-export class AnswerPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+export class ResultPage {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {``
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AnswerPage');
+    console.log('ionViewDidLoad ResultPage');
   }
 
 }

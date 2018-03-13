@@ -14,12 +14,13 @@ import { AnswerPage } from '../answer/answer';
   templateUrl: 'participant-survey.html',
 })
 export class ParticipantPage {
-  private _COLL: string = 'SURVEY';
+  private _COLL: string = '';
   private _DOC: string = '';
   private _CONTENT: any;
   public surveys: any;
   filterItems:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private _DB: DatabaseProvider, private _ALERT: AlertController) {
+    this._COLL = "SURVEY";
     this._CONTENT = {
       name: "",
       author: "",

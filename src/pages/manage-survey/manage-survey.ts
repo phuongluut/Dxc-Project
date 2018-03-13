@@ -11,9 +11,6 @@ import { Result } from './answer.interface';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-// mobiscroll.settings = {
-//   theme: 'ios'
-// };
 @IonicPage({
   name: 'manage-survey'
 })
@@ -31,11 +28,11 @@ export class ManageSurveyPage implements OnInit {
   public docID: string = '';
   public timeStart: any;
   public timeEnd: any;
-  public answer: string = '';
+  public answers: any[];
   public isEditable: boolean = false;
   private isDisappear: boolean = false;
-  public title: string = "ADD A NEW SURVEY";
-  private _COLL: string = "SURVEY";
+  public title: string = "";
+  private _COLL: string = "";
   filterItems: any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,6 +40,8 @@ export class ManageSurveyPage implements OnInit {
     public _DB: DatabaseProvider,
     private _ALERT: AlertController) {
     this.timeStart = this.calculateTime('+7');
+    this.timeEnd = this.calculateTime('+7');
+    this._COLL = "SURVEY";
 
     if (navParams.get('isEdited')) {
       let record = navParams.get('record');
@@ -51,6 +50,7 @@ export class ManageSurveyPage implements OnInit {
       this.docID = record.survey.id;
       this.timeStart = record.survey.timeStart;
       this.timeEnd = record.survey.timeEnd;
+      this.answers = record.survey.answers;
       this.isEditable = true;
       this.isDisappear = true;
       this.title = 'SURVEY INFOMATION';
@@ -101,7 +101,6 @@ export class ManageSurveyPage implements OnInit {
 
   addAnswer() {
     const control = <FormArray>this.form.controls['answers'];
-    console.log(this.answer);
     control.push(this.initAnswer());
   }
 
@@ -109,28 +108,18 @@ export class ManageSurveyPage implements OnInit {
     const control = <FormArray>this.form.controls['answers'];
     control.removeAt(i);
   }
-
-  save(model: Result) {
-    console.log(model);
-  }
-
+  
   saveSurvey(value: any): void {
-    let name: string = this.form.controls["name"].value,
-      author: string = this.form.controls["author"].value,
-      timeStart: DateTime = this.form.controls["timeStart"].value,
-      timeEnd: DateTime = this.form.controls["timeEnd"].value,
-      answer: string = this.form.controls["answer"].value;
+    let getValue = {
+      name: this.form.controls["name"].value,
+      author: this.form.controls["author"].value,
+      timeStart:  this.form.controls["timeStart"].value,
+      timeEnd: this.form.controls["timeEnd"].value,
+      answers: <FormArray>this.form.controls['answers'].value
+    }
 
     if (this.isEditable) {
-      this._DB.updateDocument(this._COLL,
-        this.docID,
-        {
-          name: name,
-          author: author,
-          timeStart: timeStart,
-          timeEnd: timeEnd,
-          answer:answer
-        })
+      this._DB.updateDocument(this._COLL, this.docID, getValue)
         .then((data) => {
           this.displayAlert('Success', 'The survey ' + name + ' was successfully updated');
         })
@@ -138,14 +127,7 @@ export class ManageSurveyPage implements OnInit {
           this.displayAlert('Updating survey failed', error.message);
         });
     } else {
-      this._DB.addDocument(this._COLL,
-        {
-          name: name,
-          author: author,
-          timeStart: timeStart,
-          timeEnd: timeEnd,
-          answer:answer
-        })
+      this._DB.addDocument(this._COLL, getValue)
         .then((data) => {
           this.clearForm();
           this.displayAlert('SURVEY ADDED', 'The survey ' + name + ' was successfully added');
@@ -158,6 +140,7 @@ export class ManageSurveyPage implements OnInit {
 
   displayAlert(title: string,
     message: string): void {
+    this.title = "ADD A NEW SURVEY";
     let alert: any = this._ALERT.create({
       title: title,
       subTitle: message,
@@ -169,6 +152,8 @@ export class ManageSurveyPage implements OnInit {
   clearForm(): void {
     this.name = '';
     this.author = '';
+    this.timeStart = '';
+    this.timeEnd = '';
   }
 
   ionViewDidLoad() {
