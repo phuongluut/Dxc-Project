@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController, DateTime } from '
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Result } from './answer.interface';
+import * as firebase from 'firebase';
 
 /**
  * Generated class for the ManageSurveyPage page.
@@ -33,6 +34,8 @@ export class ManageSurveyPage implements OnInit {
   private isDisappear: boolean = false;
   public title: string = "";
   private _COLL: string = "";
+  private surveyUid: string;
+  private userUid: string;
   filterItems: any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -41,21 +44,7 @@ export class ManageSurveyPage implements OnInit {
     private _ALERT: AlertController) {
     this.timeStart = this.calculateTime('+7');
     this.timeEnd = this.calculateTime('+7');
-    this._COLL = "SURVEY";
-
-    if (navParams.get('isEdited')) {
-      let record = navParams.get('record');
-      this.name = record.survey.name;
-      this.author = record.survey.author;
-      this.docID = record.survey.id;
-      this.timeStart = record.survey.timeStart;
-      this.timeEnd = record.survey.timeEnd;
-      this.answers = record.survey.answers;
-      this.isEditable = true;
-      this.isDisappear = true;
-      this.title = 'SURVEY INFOMATION';
-    }
-
+    this._COLL = "SURVEY";  
   }
 
   calculateTime(offset: any) {
@@ -84,7 +73,7 @@ export class ManageSurveyPage implements OnInit {
     // throw new Error("Method not implemented.");
     this.form = this._FB.group({
       'name': ['', Validators.required],
-      'author': ['', Validators.required],
+      'author': [firebase.auth().currentUser.email, Validators.required],
       'timeStart': ['', Validators.required],
       'timeEnd': ['', Validators.required],
       'answers': this._FB.array([
@@ -114,28 +103,24 @@ export class ManageSurveyPage implements OnInit {
       name: this.form.controls["name"].value,
       author: this.form.controls["author"].value,
       timeStart:  this.form.controls["timeStart"].value,
-      timeEnd: this.form.controls["timeEnd"].value,
-      answers: <FormArray>this.form.controls['answers'].value
-    }
-
-    if (this.isEditable) {
-      this._DB.updateDocument(this._COLL, this.docID, getValue)
-        .then((data) => {
-          this.displayAlert('Success', 'The survey ' + name + ' was successfully updated');
-        })
-        .catch((error) => {
-          this.displayAlert('Updating survey failed', error.message);
-        });
-    } else {
+      timeEnd: this.form.controls["timeEnd"].value
+    }    
       this._DB.addDocument(this._COLL, getValue)
         .then((data) => {
+          data.set({
+            userUid: firebase.auth().currentUser.uid,
+            surveyUid: data.id,
+            name: getValue.name,
+            author: getValue.author,
+            timeStart: getValue.timeStart,
+            timeEnd: getValue.timeEnd
+          })           
           this.clearForm();
-          this.displayAlert('SURVEY ADDED', 'The survey ' + name + ' was successfully added');
+          this.displayAlert('SURVEY ADDED', 'The survey ' + getValue.name + ' was successfully added');
         })
         .catch((error) => {
           this.displayAlert('Adding survey failed', error.message);
         });
-    }
   }
 
   displayAlert(title: string,
@@ -154,6 +139,10 @@ export class ManageSurveyPage implements OnInit {
     this.author = '';
     this.timeStart = '';
     this.timeEnd = '';
+    this.answers = [];
+  }
+
+  saveAnswer() {
   }
 
   ionViewDidLoad() {

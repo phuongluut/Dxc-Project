@@ -4,41 +4,27 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title class="title">T-SURVEY</ion-title>
-    <ion-icon end class="icon-dash" (click)="goDashboard()" ios="ios-person" md="md-person"></ion-icon>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addSurvey()">
+        <ion-icon ios="ios-add-circle-outline" md="md-add-circle" class="avatar"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="content" padding>
-  <h1>WELCOME TO T-SURVEY</h1>
-  <ion-content>
-    <button ion-button block>Do you want to eat something at night</button>
-
-    <button ion-button block></button>
-
-  </ion-content>
-
-
-
-
-  <!-- <div *ngIf="isLoggedIn; else facebookLogin">
-    <h2>Hi, {{users.name}} ({{users.email}})</h2>
-    <p>
-      Gender: {{users.gender}}
-    </p>
-    <p>
-      <img src="{{users.picture.data.url}}" width="100" alt="{{users.name}}" />
-    </p>
-    <p>
-      <button ion-button icon-right (click)="logout()">
-        Logout
-      </button>
-    </p>
-  </div>
-  <ng-template #facebookLogin>
-    <button ion-button icon-right (click)="login()">
-      Login with
-      <ion-icon name="logo-facebook"></ion-icon>
-    </button>
-  </ng-template> -->
+<ion-content padding>
+  <ion-row>
+    <ion-searchbar class="search" (ionInput)="getItems($event)"></ion-searchbar>
+  </ion-row>
+  <ion-list>
+    <ion-item-sliding *ngFor="let survey of filterItems">
+      <ion-item class="items" (click)="updateSurvey(survey)">
+        <h2>{{ survey.name }}</h2>
+        <p>
+          Author: {{ survey.author }}
+        </p>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
 
 </ion-content>

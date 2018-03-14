@@ -1,7 +1,7 @@
 
 import { PropertyPage } from './../property/property';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 
 
@@ -30,6 +30,7 @@ export class DashboardPage {
 
   goLogin() {
     this.navCtrl.push(LoginPage);
+    
   }
 
 }

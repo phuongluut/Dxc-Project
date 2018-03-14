@@ -14,6 +14,7 @@ import { ResetPasswordPage } from '../reset-password/reset-password';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Facebook } from '@ionic-native/facebook'
+import { ParticipantPage } from '../participant-survey/participant-survey';
 @IonicPage({
   name: 'login'
 })

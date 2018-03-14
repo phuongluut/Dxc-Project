@@ -46,7 +46,9 @@ export class DatabaseProvider {
                 author: doc.data().author,
                 timeStart: doc.data().timeStart, 
                 timeEnd: doc.data().timeEnd,
-                answers: doc.data().answers
+                answers: doc.data().answers,
+                description: doc.data().description,
+                quatity: doc.data().quatity
               });
             });
           resolve(obj);

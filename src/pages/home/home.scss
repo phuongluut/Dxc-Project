@@ -16,6 +16,11 @@ page-home {
     .content{
     background-color:white;
     }
-
+.toolbar-title-ios{
+    color: white;
+}
+ion-app.ios [padding] .scroll-content{
+    padding-top:0;
+}
 }
 

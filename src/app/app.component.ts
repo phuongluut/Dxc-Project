@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, NavController, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -15,6 +15,7 @@ import { ManageSurveyPage} from '../pages/manage-survey/manage-survey';
 
 
 @Component({
+  selector: 'page-app',
   templateUrl: 'app.html'
 })
 export class MyApp {
@@ -24,12 +25,12 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private menu: MenuController,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: ParticipantPage },
+      { title: 'Home', component: HomePage },
       { title: 'Quickpoll', component: ManageSurveyPage},
       { title: 'Logout', component: LoginPage }
     ];
@@ -44,6 +45,13 @@ export class MyApp {
       }
     });
   }
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
+  }
+
+  ionViewWillLeave() {
+    this.menu.swipeEnable(true);
+  }
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -55,9 +63,13 @@ export class MyApp {
     firebase.initializeApp(environment.firebase);
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+  // openPage(page) {
+  //   // Reset the content nav to have just this page
+  //   // we wouldn't want the back button to show in this scenario
+  //   this.nav.setRoot(page.component);
+  // }
+
+  goLogin() {
+    this.nav.push(LoginPage);
   }
 }
