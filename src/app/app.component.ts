@@ -10,8 +10,8 @@ import { environment } from '../environments/environment';
 import firebase from 'firebase';
 import { LoginPage } from '../pages/login/login';
 import { DashboardPage } from '../pages/dashboard/dashboard';
-import { ParticipantPage } from '../pages/participant-survey/participant-survey';
 import { ManageSurveyPage} from '../pages/manage-survey/manage-survey';
+import { ResultPage } from '../pages/result/result';
 
 
 @Component({
@@ -68,8 +68,15 @@ export class MyApp {
   //   // we wouldn't want the back button to show in this scenario
   //   this.nav.setRoot(page.component);
   // }
-
+  goSurvey(){
+    this.nav.setRoot(PropertyPage);
+    this.menu.close();
+    this.menu.swipeEnable(false);
+    
+  }
   goLogin() {
     this.nav.push(LoginPage);
+    this.menu.close();
+    this.menu.swipeEnable(false);
   }
 }

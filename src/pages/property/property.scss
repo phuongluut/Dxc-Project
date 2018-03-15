@@ -1,29 +1,36 @@
 page-property {
-.button{
-    font-size: 20px;
+    .button {
+        font-size: 20px;
+    }
+    ion-item-options .button:last-child {
+        padding-right: 0;
+        margin: 0;
+    }
+    ion-buttons {
+        margin: 0;
+    }
+    .btn-d {
+        font-size: 18px;
+    }
+    button-inner {
+        font-weight: bold;
+    }
+    .icon {
+        background-image: "";
+    }
+    .toolbar-ios ion-title {
+        background-color: color($colors, green1);
+    }
+    .toolbar-title-ios {
+        color: color($colors, light);
+    }
+    .bar-button-menutoggle-ios {
+        margin: 0;
+        min-width: 30px;
+    }
+    .bar-button-default-ios,
+    .bar-button-default.bar-button-ios-default,
+    .bar-button-clear-ios-default {
+        color: color($colors, light);
+    }
 }
-
-ion-item-options .button:last-child{
-    padding-right: 0;
-    margin: 0;
-}
-ion-buttons{
-    margin: 0;
-}
-.btn-d{
-    font-size: 18px;
-}
-button-inner{
-    font-weight: bold;
-}
-.icon{
-    background-image: "";
-}
-
-
-
-}
-
-
-
-

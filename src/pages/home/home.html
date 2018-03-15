@@ -18,10 +18,10 @@
   </ion-row>
   <ion-list>
     <ion-item-sliding *ngFor="let survey of filterItems">
-      <ion-item class="items" (click)="updateSurvey(survey)">
-        <h2>{{ survey.name }}</h2>
+      <ion-item class="items" (click)="goAnswer(survey.data?.surveyUid ,survey.data?.name)">
+        <h2>{{ survey.data?.name }}</h2>
         <p>
-          Author: {{ survey.author }}
+          Author: {{ survey.author?.email }}
         </p>
       </ion-item>
     </ion-item-sliding>

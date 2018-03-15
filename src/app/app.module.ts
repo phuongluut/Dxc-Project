@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { LoginPage } from '../pages/login/login';
 import { DashboardPage } from '../pages/dashboard/dashboard';
-import { ParticipantPage } from '../pages/participant-survey/participant-survey';
 import { AuthProvider } from '../providers/auth/auth';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { SignupPage } from '../pages/signup/signup';
@@ -24,9 +23,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { Facebook } from '@ionic-native/facebook';
-import { AnswerPageModule } from '../pages/answer/answer.module';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AnwserPageModule } from '../pages/anwser/anwser.module';
+import { ManageAnswerComponent } from '../components/manage-answer/manage-answer';
+import { ResultPageModule } from '../pages/result/result.module';
 
 
 
@@ -37,11 +38,10 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     HomePage,
     LoginPage,
     PropertyPage,
-    ParticipantPage,
     DashboardPage,
     ResetPasswordPage,
     SignupPage,
-  
+    ManageAnswerComponent
   ],
   imports: [ 
     BrowserModule,
@@ -50,9 +50,10 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     ManageSurveyPageModule,
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
-    AnswerPageModule,
     AngularFireAuthModule,
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule,
+    AnwserPageModule,
+    ResultPageModule
   ],    
   bootstrap: [IonicApp],
   entryComponents: [
@@ -60,11 +61,10 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     HomePage,
     LoginPage,
     PropertyPage,
-    ParticipantPage,
     DashboardPage,
     ResetPasswordPage,
     SignupPage,
-
+    ManageAnswerComponent
   ],
   providers: [
     StatusBar,

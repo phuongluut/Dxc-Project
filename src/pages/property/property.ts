@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import * as firebase from 'firebase';
+import { AngularFirestore } from 'angularfire2/firestore';
 /**
  * Generated class for the PropertyPage page.
  *
@@ -14,12 +16,13 @@ import { DatabaseProvider } from '../../providers/database/database';
   templateUrl: 'property.html',
 })
 export class PropertyPage {
+
   filterItems: any;
   private _COLL: string = '';
   private _DOC: string = '';
   private _CONTENT: any;
   public surveys: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _DB: DatabaseProvider, private _ALERT: AlertController) {
+  constructor(public navCtrl: NavController, public firestore: AngularFirestore, public navParams: NavParams, private _DB: DatabaseProvider, private _ALERT: AlertController) {
     this._COLL = "SURVEY";
     this._CONTENT = {
       name: "",
@@ -29,6 +32,7 @@ export class PropertyPage {
       answers: ""
     } 
   }
+
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
 
@@ -53,17 +57,17 @@ export class PropertyPage {
   }
 
   retrieveCollection(): void {
-    this._DB.getDocuments(this._COLL)
-      .then((data) => {
-        if (data.length === 0) {
-          this.generateCollectionAndSurvey();
-        }
-        else {
-          this.surveys = data;
-          this.filterItems = data;
-        }
-      })
-      .catch();
+    let userId = firebase.auth().currentUser.uid;
+    this.firestore.collection('SURVEY',ref => ref.where('userUid','==',userId)).valueChanges().subscribe(res =>{
+      if(res.length === 0){
+        this.generateCollectionAndSurvey();
+      }else{
+        this.surveys = res;
+        this.filterItems = res;
+      }
+      console.log(userId);
+      
+    })    
   }
   //function search
   getItems(input: any) {

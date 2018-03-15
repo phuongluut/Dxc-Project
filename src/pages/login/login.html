@@ -5,17 +5,17 @@
 
         <ion-row>
           <ion-col col-12>
-            <ion-icon ios="ios-contact-outline" md="md-contact" color="light"></ion-icon>
+            <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline" color="primary" class="icon-ionic"></ion-icon>
             <h2 class="tile">T-survey</h2>
           </ion-col>
         </ion-row>
         <ion-item>
-          <ion-icon item-start ios="ios-person" md="md-person" class="icon-user"></ion-icon>
+          <ion-icon item-start ios="ios-person" md="md-person" class="icon-user" color="primary"></ion-icon>
           <ion-input class="btn" formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-icon item-start ios="ios-key" md="md-key" class="icon-pass"></ion-icon>
+          <ion-icon item-start ios="ios-key" md="md-key" class="icon-pass" color="primary"></ion-icon>
           <ion-input class="btn" formControlName="password" type="password" placeholder="Your password" [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>
         </ion-item>
 
@@ -25,11 +25,11 @@
 
       </form>
 
-      <button ion-button block clear (click)="goToSignup()" style="font-weight: bold; color: white">
+      <button ion-button block clear (click)="goToSignup()" style="font-weight: bold; color: #488aff">
         Create a new account
       </button>
 
-      <button ion-button block clear (click)="goToResetPassword()" style="font-weight: bold; color: white">
+      <button ion-button block clear (click)="goToResetPassword()" style="font-weight: bold; color: #488aff">
         I forgot my password
       </button>
 

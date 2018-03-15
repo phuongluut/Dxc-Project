@@ -1,11 +1,11 @@
 'use strict'
-import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, DateTime } from 'ionic-angular';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Result } from './answer.interface';
 import * as firebase from 'firebase';
-
+import { ManageAnswerComponent } from "../../components/manage-answer/manage-answer";
 /**
  * Generated class for the ManageSurveyPage page.
  *
@@ -20,7 +20,8 @@ import * as firebase from 'firebase';
   templateUrl: 'manage-survey.html',
 })
 export class ManageSurveyPage implements OnInit {
-
+  @ViewChild('answer', { read: ViewContainerRef })
+  container: ViewContainerRef;
 
   public form: FormGroup;
   public records: any;
@@ -29,19 +30,20 @@ export class ManageSurveyPage implements OnInit {
   public docID: string = '';
   public timeStart: any;
   public timeEnd: any;
-  public answers: any[];
+  // public answers: any;
   public isEditable: boolean = false;
   private isDisappear: boolean = false;
   public title: string = "";
   private _COLL: string = "";
   private surveyUid: string;
   private userUid: string;
+  private answerUid: string;
   filterItems: any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public _FB: FormBuilder,
     public _DB: DatabaseProvider,
-    private _ALERT: AlertController) {
+    private _ALERT: AlertController, private _cfr: ComponentFactoryResolver) {
     this.timeStart = this.calculateTime('+7');
     this.timeEnd = this.calculateTime('+7');
     this._COLL = "SURVEY";  
@@ -76,29 +78,30 @@ export class ManageSurveyPage implements OnInit {
       'author': [firebase.auth().currentUser.email, Validators.required],
       'timeStart': ['', Validators.required],
       'timeEnd': ['', Validators.required],
-      'answers': this._FB.array([
-        this.initAnswer(),
-      ])
+      // 'answers': this._FB.group({
+      //   answer: ['', Validators.required]
+      // })
     });
   }
 
-  initAnswer() {
-    return this._FB.group({
-      answer: ['', Validators.required]
-    })
-  }
+  // initAnswer() {
+  //   return this._FB.group({
+  //     answer: ['', Validators.required]
+  //   })
+  // }
 
   addAnswer() {
-    const control = <FormArray>this.form.controls['answers'];
-    control.push(this.initAnswer());
+    var comp = this._cfr.resolveComponentFactory(ManageAnswerComponent);
+    var manageAnswerComponent = this.container.createComponent(comp);
+    manageAnswerComponent.instance._ref = manageAnswerComponent;
   }
 
-  removeAnswer(i: number) {
-    const control = <FormArray>this.form.controls['answers'];
-    control.removeAt(i);
-  }
+  // removeAnswer(i: number) {
+  //   const control = <FormArray>this.form.controls['answers'];
+  //   control.removeAt(i);
+  // }
   
-  saveSurvey(value: any): void {
+  saveSurvey(value: any, id: number): void {
     let getValue = {
       name: this.form.controls["name"].value,
       author: this.form.controls["author"].value,
@@ -114,7 +117,7 @@ export class ManageSurveyPage implements OnInit {
             author: getValue.author,
             timeStart: getValue.timeStart,
             timeEnd: getValue.timeEnd
-          })           
+          })
           this.clearForm();
           this.displayAlert('SURVEY ADDED', 'The survey ' + getValue.name + ' was successfully added');
         })
@@ -131,7 +134,7 @@ export class ManageSurveyPage implements OnInit {
       subTitle: message,
       buttons: ['GOT IT!']
     });
-    alert.present();
+    alert.present();    
   }
 
   clearForm(): void {
@@ -139,10 +142,6 @@ export class ManageSurveyPage implements OnInit {
     this.author = '';
     this.timeStart = '';
     this.timeEnd = '';
-    this.answers = [];
-  }
-
-  saveAnswer() {
   }
 
   ionViewDidLoad() {
