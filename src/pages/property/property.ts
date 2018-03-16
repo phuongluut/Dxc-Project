@@ -58,10 +58,10 @@ export class PropertyPage {
 
   retrieveCollection(): void {
     let userId = firebase.auth().currentUser.uid;
-    this.firestore.collection('SURVEY',ref => ref.where('userUid','==',userId)).valueChanges().subscribe(res =>{
+    this.firestore.collection('SURVEY', ref => ref.where('userUid', '==', userId)).valueChanges().subscribe(res =>{
       if(res.length === 0){
         this.generateCollectionAndSurvey();
-      }else{
+      } else {
         this.surveys = res;
         this.filterItems = res;
       }
@@ -95,15 +95,30 @@ export class PropertyPage {
   }
 
   deleteSurvey(obj): void {
+    // this.retrieveCollection();
+    let userId = firebase.auth().currentUser.uid;
+    this.firestore.collection('SURVEY', ref => ref.where('userUid', '==', userId)).valueChanges().subscribe(res => {
+      console.log(res);
+      console.log(this._COLL);
+      for (let index = 0; index < res.length; index++) {
+        const element = res[index];
+        console.log(element);
+        
+      }
+      // this._DB.deleteDocument(this._COLL)
+    })
+    console.log(userId);
+    
     this._DB.deleteDocument(this._COLL,
       obj.id)
       .then((data: any) => {
-        this.retrieveCollection();
-        // this.displayAlert('Success', 'The survey ' + '"' + obj.name + '"' + ' was successfully removed');
+        console.log(data);
+        
+        this.displayAlert('Success', 'The survey ' + '"' + obj.name + '"' + ' was successfully removed');
       })
       .catch((error: any) => {
         this.displayAlert('Error', error.message);
-      });
+      });      
   }
 
   displayAlert(title: string, message: string): void {

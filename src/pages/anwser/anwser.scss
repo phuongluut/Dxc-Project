@@ -17,7 +17,7 @@ page-anwser {
         font-weight: bold;
         font-size: 21px;
         padding-top: 4px;
-        margin-left: 16px;
+        // margin-left: 16px;
     }
     .item-ios.item-block .item-inner {
         border-bottom: none;
@@ -32,7 +32,13 @@ page-anwser {
     .list-ios>.item-block:first-child {
         border: none;
     }
-    form {
-        margin-left: 30px;
+    // form {
+    //     margin-left: 30px;
+    // }
+    .radio-ios .radio-icon {
+        width: 24px;
+        height: 24px;
+        border: solid 2px #488aff;
+        border-radius: 100px;
     }
 }

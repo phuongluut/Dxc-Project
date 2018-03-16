@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Result } from './answer.interface';
 import * as firebase from 'firebase';
-import { ManageAnswerComponent } from "../../components/manage-answer/manage-answer";
+// import { ManageAnswerComponent } from "../../components/manage-answer/manage-answer";
 /**
  * Generated class for the ManageSurveyPage page.
  *
@@ -26,11 +26,10 @@ export class ManageSurveyPage implements OnInit {
   public form: FormGroup;
   public records: any;
   public name: string = '';
-  public author: string = '';
   public docID: string = '';
   public timeStart: any;
   public timeEnd: any;
-  // public answers: any;
+  public answers: any;
   public isEditable: boolean = false;
   private isDisappear: boolean = false;
   public title: string = "";
@@ -75,55 +74,64 @@ export class ManageSurveyPage implements OnInit {
     // throw new Error("Method not implemented.");
     this.form = this._FB.group({
       'name': ['', Validators.required],
-      'author': [firebase.auth().currentUser.email, Validators.required],
       'timeStart': ['', Validators.required],
       'timeEnd': ['', Validators.required],
-      // 'answers': this._FB.group({
-      //   answer: ['', Validators.required]
-      // })
+      'answers': this._FB.array([
+        this.initAnswer(),
+      ])
     });
   }
 
-  // initAnswer() {
-  //   return this._FB.group({
-  //     answer: ['', Validators.required]
-  //   })
-  // }
 
-  addAnswer() {
-    var comp = this._cfr.resolveComponentFactory(ManageAnswerComponent);
-    var manageAnswerComponent = this.container.createComponent(comp);
-    manageAnswerComponent.instance._ref = manageAnswerComponent;
+  initAnswer() {
+    return this._FB.group({
+      answer: ['', Validators.required]
+    })
   }
 
-  // removeAnswer(i: number) {
-  //   const control = <FormArray>this.form.controls['answers'];
-  //   control.removeAt(i);
-  // }
+  addAnswer() {
+    const control = <FormArray>this.form.controls['answers'];
+    control.push(this.initAnswer());
+  }
+
+  removeAnswer(i: number) {
+    const control = <FormArray>this.form.controls['answers'];
+    control.removeAt(i);
+  }
   
-  saveSurvey(value: any, id: number): void {
+  saveSurvey(value: any): void {
     let getValue = {
       name: this.form.controls["name"].value,
-      author: this.form.controls["author"].value,
-      timeStart:  this.form.controls["timeStart"].value,
-      timeEnd: this.form.controls["timeEnd"].value
-    }    
-      this._DB.addDocument(this._COLL, getValue)
-        .then((data) => {
-          data.set({
-            userUid: firebase.auth().currentUser.uid,
-            surveyUid: data.id,
-            name: getValue.name,
-            author: getValue.author,
-            timeStart: getValue.timeStart,
-            timeEnd: getValue.timeEnd
-          })
-          this.clearForm();
-          this.displayAlert('SURVEY ADDED', 'The survey ' + getValue.name + ' was successfully added');
+      timeStart: this.form.controls["timeStart"].value,
+      timeEnd: this.form.controls["timeEnd"].value,
+    }
+    this._DB.addDocument(this._COLL, getValue)
+      .then((data) => {
+        console.log(firebase.auth().currentUser.uid);
+        data.set({
+          userUid: firebase.auth().currentUser.uid,
+          surveyUid: data.id,
+          name: getValue.name,
+          timeStart: getValue.timeStart,
+          timeEnd: getValue.timeEnd
         })
-        .catch((error) => {
-          this.displayAlert('Adding survey failed', error.message);
-        });
+        let answers = <FormArray>this.form.controls["answers"].value
+        for (let i = 0; i < answers.length; i++) {
+          const answer = answers[i].answer;
+          this._DB.addDocument("RESULT", { answer: answer }).then((dataObj) => {
+            dataObj.set({
+              answerUid: dataObj.id,
+              answer: answer,
+              surveyUid: data.id
+            })
+          })
+        }
+        this.ngOnInit();
+        this.displayAlert('SURVEY ADDED', 'The survey ' + '"' + getValue.name + '"' + ' was successfully added');
+      })
+      .catch((error) => {
+        this.displayAlert('Adding survey failed', error.message);
+      });
   }
 
   displayAlert(title: string,
@@ -135,13 +143,6 @@ export class ManageSurveyPage implements OnInit {
       buttons: ['GOT IT!']
     });
     alert.present();    
-  }
-
-  clearForm(): void {
-    this.name = '';
-    this.author = '';
-    this.timeStart = '';
-    this.timeEnd = '';
   }
 
   ionViewDidLoad() {

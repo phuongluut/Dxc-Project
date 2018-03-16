@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="arrow-back" color="light"></ion-icon>
     </button>
-    <ion-title>Survey-Manage</ion-title>
+    <ion-title>My Survey</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="addSurvey()">
         <ion-icon ios="ios-add-circle-outline" md="md-add-circle" class="avatar"></ion-icon>
@@ -26,11 +26,8 @@
   <ion-list>
     <ion-item-sliding *ngFor="let survey of filterItems">
 
-      <ion-item class="items" (click)="updateSurvey(survey)">
+      <ion-item class="items" >
         <h2>{{ survey.name }}</h2>
-        <p>
-          Author: {{ survey.author }}
-        </p>
       </ion-item>
 
       <ion-item-options side="right">

@@ -25,6 +25,8 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
+  username: string;
+
   constructor(private menu: MenuController,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
@@ -43,8 +45,11 @@ export class MyApp {
         this.rootPage = HomePage;
         unsubscribe();
       }
+      this.username = user.email;
+      console.log(this.username);
     });
   }
+  
   ionViewDidEnter() {
     this.menu.swipeEnable(false);
   }

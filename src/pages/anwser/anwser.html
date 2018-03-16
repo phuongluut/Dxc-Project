@@ -27,10 +27,10 @@
       <ion-list radio-group formControlName="listanswer" [(ngModel)]="theanswer">
         <ion-item *ngFor="let ans of result">
           <ion-label>{{ans.answer}} </ion-label>
-          <ion-radio (click)="addAnswer(theanswer)" [value]="ans"></ion-radio>
+          <ion-radio [value]="ans"></ion-radio>
         </ion-item>
-        <!-- <button ion-button (click)="addAnswer(theanswer)">Send</button> -->
       </ion-list>
+      <button block outline ion-button (click)="addAnswer(theanswer)">Vote</button>
     </form>
   </ion-item>
 

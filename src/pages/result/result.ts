@@ -57,11 +57,11 @@ export class ResultPage {
     });
     console.log(sourceCount)
     let data = {
-      labels: ["Red", "Blue", "Yellow"],
+      labels: ["Red", "Blue", "Yellow","Black"],
       datasets: [
         {
           data: sourceCount,
-          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56","#000"],
           hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
         }]
     };
