@@ -30,8 +30,8 @@ export class HomePage {
   private _CONTENT: any;
   public surveys: any;
   filterItems: any;
-  constructor(public navCtrl: NavController,
-    public firestore: AngularFirestore, public navParams: NavParams, private _DB: DatabaseProvider, private _ALERT: AlertController) {
+  constructor(public navCtrl: NavController, public firestore: AngularFirestore, 
+    public navParams: NavParams, private _DB: DatabaseProvider, private _ALERT: AlertController) {
     this._COLL = "SURVEY";
     this._CONTENT = {
       name: "",
@@ -50,9 +50,8 @@ export class HomePage {
           return true;
         }
       });
-      // console.log("dsadasfjklklwdjkjjklgh", filter, userId);
       if (filter){
-        this.navCtrl.setRoot('chart-page', { id }); 
+        this.navCtrl.setRoot('chart-page', { id, name }); 
       }else{
         this.navCtrl.push('answer-page', { id, name });
       }
@@ -68,22 +67,16 @@ export class HomePage {
     let searchKeyword = input.target.value;
     if (searchKeyword != null) {
       this.filterItems = this.surveys.filter(survey => survey.name.toLowerCase().indexOf(searchKeyword.toLowerCase()) > -1);
-      console.log(this.filterItems);
-
     }
     else {
       this.filterItems = this.surveys;
-      console.log(this.filterItems);
-
     }
   }
 
   getUsers(){
     this.firestore.collection('USER').valueChanges().subscribe(users => {
       this.users = users;
-      
     });
-    
   }
 
   generateCollectionAndSurvey(): void {
@@ -99,19 +92,16 @@ export class HomePage {
 
   retrieveCollection(): void {
     this.firestore.collection<TemplateSurvey>('SURVEY').valueChanges().subscribe(surveys =>{
-      let sourceSurveys:SURVEY[] = surveys.map(survey => {
-        console.log("testing user", this.users);
-        
+      let sourceSurveys:SURVEY[] = surveys.map(survey => {        
         let author = this.users.find(user => {
-          console.log(user.userUid.indexOf(survey.userUid) > -1)
-          return user.userUid.indexOf(survey.userUid) > -1
+          return user.userUid.indexOf(survey.userUid) > -1          
         })
+        console.log({data: survey});
+        
         return {data:survey,author:author}
       })
       this.filterItems = sourceSurveys;
-      this.surveys = sourceSurveys;
-      console.log(this.surveys);
-      
+      this.surveys = sourceSurveys;      
     })
   }
 

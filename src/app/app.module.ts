@@ -28,6 +28,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AnwserPageModule } from '../pages/anwser/anwser.module';
 import { ManageAnswerComponent } from '../components/manage-answer/manage-answer';
 import { ResultPageModule } from '../pages/result/result.module';
+import { UploadServiceProvider } from '../providers/upload-service/upload-service';
 
 
 
@@ -74,7 +75,8 @@ import { ResultPageModule } from '../pages/result/result.module';
     AuthServiceProvider,
     AuthProvider,
     AngularFireAuth,
-    Facebook
+    Facebook,
+    UploadServiceProvider
   ]
 })
 export class AppModule {}

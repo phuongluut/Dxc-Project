@@ -13,7 +13,7 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ManageSurveyPage} from '../pages/manage-survey/manage-survey';
 import { ResultPage } from '../pages/result/result';
 
-
+// import { AngularFirestore } from 'angularfire2/firestore';
 @Component({
   selector: 'page-app',
   templateUrl: 'app.html'
@@ -27,7 +27,8 @@ export class MyApp {
 
   username: string;
 
-  constructor(private menu: MenuController,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private menu: MenuController,public platform: Platform, 
+    public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -46,7 +47,6 @@ export class MyApp {
         unsubscribe();
       }
       this.username = user.email;
-      console.log(this.username);
     });
   }
   
@@ -84,4 +84,15 @@ export class MyApp {
     this.menu.close();
     this.menu.swipeEnable(false);
   }
+  goHome(){
+    this.nav.push(HomePage);
+    this.menu.close();
+    this.menu.swipeEnable(false);
+  }
+
+  // getUserUid() {
+  //   this.afs.collection('USER').valueChanges().subscribe(users => {
+  //     console.log(users);
+  //   })
+  // }
 }

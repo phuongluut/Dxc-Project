@@ -5,7 +5,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="content" >
+  <ion-content class="content">
     <ion-card class="card-wallpaper">
       <div class="info">
         <img src="/assets/imgs/obama.png" alt="" class="avatar">
@@ -16,7 +16,17 @@
       </div>
     </ion-card>
     <!-- end ion-card -->
-
+    <div class="option">
+      <ion-grid>
+        <ion-row class="ionrow-list">
+          <ion-col col-12 class="ioncol-list">
+            <h2 class="assets" (click)="goHome()">
+              <ion-icon ios="ios-home-outline" md="md-home" class="ioncol-icon"></ion-icon>
+              Home </h2>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
     <!-- start option -->
     <div class="option">
       <ion-grid>

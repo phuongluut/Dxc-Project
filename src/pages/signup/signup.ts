@@ -14,6 +14,7 @@ import { HomePage } from '../home/home';
 // @IonicPage({
 //   name: 'signup'
 // })
+
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
@@ -37,6 +38,7 @@ export class SignupPage {
       lastname: ['', Validators.compose([Validators.required])]
     });
   }
+
   signupUser() {
     if (!this.signupForm.valid) {
       console.log(this.signupForm.value);

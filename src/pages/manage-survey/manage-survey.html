@@ -13,7 +13,7 @@
     <ion-title> {{ title }} </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="saveSurvey(form.value)" [disabled]="!form.valid">
-        <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon>
+        <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline" color="light"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -30,13 +30,13 @@
 
     <ion-item>
       <ion-label stacked>Time start:</ion-label>
-      <ion-datetime displayFormat="YYYY-MM-DD HH:mm A" formControlName="timeStart"></ion-datetime>
+      <ion-datetime displayFormat="YYYY-MM-DD HH:mm A" max="2999" formControlName="timeStart"></ion-datetime>
     </ion-item>
 
 
     <ion-item>
       <ion-label stacked>Time end:</ion-label>
-      <ion-datetime displayFormat="YYYY-MM-DD HH:mm A" formControlName="timeEnd"></ion-datetime>
+      <ion-datetime displayFormat="YYYY-MM-DD HH:mm A" max="2999" formControlName="timeEnd"></ion-datetime>
     </ion-item>
 
     <div formArrayName="answers">
@@ -48,11 +48,11 @@
         </ion-item>
       </div>
 
-      <ion-buttons end>
-        <button ion-button icon-only (click)="addAnswer()">
-          <ion-icon ios="ios-add-circle-outline" md="md-add-circle"></ion-icon>
-        </button>
-      </ion-buttons>
+      <button (click)="addAnswer()" end class="addAnswer">
+        <label>Add answer </label> 
+        <ion-icon ios="ios-add-circle-outline" md="md-add-circle" class="iconPlus"></ion-icon>
+      </button>
+
     </div>
 
   </form>

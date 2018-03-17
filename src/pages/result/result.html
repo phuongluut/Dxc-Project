@@ -1,26 +1,26 @@
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle>
-      <ion-icon name="menu" ></ion-icon>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
     </button>
-        <ion-title>Result</ion-title>
-    </ion-navbar>
+    <ion-title>Result</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <ion-card>
-        <ion-card-header>
-            Pie Chart
-        </ion-card-header>
-        <ion-card-content>
-            <canvas #pieCanvas></canvas>
-        </ion-card-content>
-    </ion-card>
-<ion-list>
-    <ion-item *ngFor="let item of result"> 
-        <ion-item>
-            {{item.answer}}:{{item.count?item.count:0}}
-        </ion-item>
-    </ion-item> 
-</ion-list>
+  <ion-card>
+    <label>
+      Q: {{nameSurvey}}
+    </label>
+    <ion-card-content>
+      <canvas #pieCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+    <ion-item *ngFor="let item of result">
+      <ion-item>
+        {{item.answer}}: {{item.count?item.count:0}}
+      </ion-item>
+    </ion-item>
+  </ion-list>
 </ion-content>

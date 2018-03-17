@@ -1,6 +1,6 @@
 'use strict'
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, DateTime } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Result } from './answer.interface';
@@ -56,7 +56,7 @@ export class ManageSurveyPage implements OnInit {
     // using supplied offset
     let nd = new Date(d.getTime() + (3600000 * offset));
 
-    return nd.toISOString();
+    return nd.toLocaleString();
   }
 
   // Determine if the client uses DST
@@ -79,7 +79,7 @@ export class ManageSurveyPage implements OnInit {
       'answers': this._FB.array([
         this.initAnswer(),
       ])
-    });
+    });    
   }
 
 
@@ -100,14 +100,16 @@ export class ManageSurveyPage implements OnInit {
   }
   
   saveSurvey(value: any): void {
-    let getValue = {
-      name: this.form.controls["name"].value,
-      timeStart: this.form.controls["timeStart"].value,
-      timeEnd: this.form.controls["timeEnd"].value,
-    }
+    if(this.form.controls['timeStart'].value > this.form.controls['timeEnd'].value) {
+      this.compareAlert('TIME IS WRONG', 'Start time has to earlier than End time');
+    } else {
+      let getValue = {
+        name: this.form.controls["name"].value,
+        timeStart: this.form.controls["timeStart"].value,
+        timeEnd: this.form.controls["timeEnd"].value
+      }
     this._DB.addDocument(this._COLL, getValue)
       .then((data) => {
-        console.log(firebase.auth().currentUser.uid);
         data.set({
           userUid: firebase.auth().currentUser.uid,
           surveyUid: data.id,
@@ -132,6 +134,7 @@ export class ManageSurveyPage implements OnInit {
       .catch((error) => {
         this.displayAlert('Adding survey failed', error.message);
       });
+    }
   }
 
   displayAlert(title: string,
@@ -143,6 +146,15 @@ export class ManageSurveyPage implements OnInit {
       buttons: ['GOT IT!']
     });
     alert.present();    
+  }
+
+  compareAlert(title: string, message: string): void {
+    let alert: any = this._ALERT.create({
+      title: title,
+      subTitle: message,
+      buttons: ['GOT IT!']
+    })
+    alert.present();
   }
 
   ionViewDidLoad() {

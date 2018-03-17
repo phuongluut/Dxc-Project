@@ -94,32 +94,21 @@ export class PropertyPage {
     this.navCtrl.push('manage-survey', { record: params, isEdited: true });
   }
 
-  deleteSurvey(obj): void {
-    // this.retrieveCollection();
-    let userId = firebase.auth().currentUser.uid;
-    this.firestore.collection('SURVEY', ref => ref.where('userUid', '==', userId)).valueChanges().subscribe(res => {
-      console.log(res);
-      console.log(this._COLL);
-      for (let index = 0; index < res.length; index++) {
-        const element = res[index];
-        console.log(element);
-        
-      }
-      // this._DB.deleteDocument(this._COLL)
-    })
-    console.log(userId);
-    
+  deleteSurvey(obj): void {    
     this._DB.deleteDocument(this._COLL,
-      obj.id)
+      obj.surveyUid)
       .then((data: any) => {
-        console.log(data);
-        
+        console.dir(data);
         this.displayAlert('Success', 'The survey ' + '"' + obj.name + '"' + ' was successfully removed');
       })
       .catch((error: any) => {
         this.displayAlert('Error', error.message);
       });      
   }
+
+  // goResult(){
+  //   this.navCtrl.push('chart-page');
+  // }
 
   displayAlert(title: string, message: string): void {
     let alert: any = this._ALERT.create({

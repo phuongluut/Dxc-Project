@@ -32,7 +32,7 @@ export class AuthProvider {
           .firestore()       //stores the information inside the cloud firestore
           .collection('USER')
           .doc(newUser.uid)
-          .set({ email: email, password: password, firstname: firstname, lastname: lastname });
+          .set({ userUid: newUser.uid, email: email, password: password, firstname: firstname, lastname: lastname });
       });
   }
   resetPassword(email: string): Promise<void> {
