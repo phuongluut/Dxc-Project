@@ -51,7 +51,7 @@ export class HomePage {
         }
       });
       if (filter){
-        this.navCtrl.setRoot('chart-page', { id, name }); 
+        this.navCtrl.push('chart-page', { id, name }); 
       }else{
         this.navCtrl.push('answer-page', { id, name });
       }

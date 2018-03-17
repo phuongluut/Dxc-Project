@@ -39,7 +39,7 @@ page-login {
         width: 76%;
         margin-left: 12%;
         background-color: color($colors, green1);
-        margin-top: 10px;
+        margin-top: 20px;
     }
     @keyframes icon {
         from {
@@ -87,7 +87,7 @@ page-login {
         float: left;
     }
     .icon-pass {
-        font-size: 40px;
+        font-size: 30px;
         float: left;
     }
     .fb {
@@ -102,6 +102,7 @@ page-login {
     }
     .content-ios {
         text-align: center;
+        background-image: linear-gradient(45deg, #eee 25%, white 25%, white 75%, #eee 75%, #eee 100%);
     }
     img.avatar {
         position: absolute;
@@ -111,6 +112,8 @@ page-login {
         top: 60%;
         left: 0;
         z-index: 2;
+        margin-top: 20px;
+        margin-left: 0;
     }
     .forgotPass {
         color: color($colors, danger);
@@ -120,13 +123,21 @@ page-login {
     }
     .icon-logo {
         width: 30%;
-        margin-bottom: 30px;
+        margin-top: 30px;
         margin-left: 40px;
+        margin-bottom: 30px;
     }
     .person {
         margin-top: 20px;
     }
-    .pass{
-        
+    .pass {}
+    .button-ios.activated {
+        background-color: color($colors, secondary);
+    }
+    .button-ios.signUp.activated {
+        background-color: color($colors, trans);
+    }
+    .button-ios.forgotPass.activated {
+        background-color: color($colors, trans);
     }
 }

@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 
 // @IonicPage({
 //   name: 'signup'
@@ -38,7 +39,9 @@ export class SignupPage {
       lastname: ['', Validators.compose([Validators.required])]
     });
   }
-
+  goLogin(){
+    this.navCtrl.push(LoginPage);
+  }
   signupUser() {
     if (!this.signupForm.valid) {
       console.log(this.signupForm.value);

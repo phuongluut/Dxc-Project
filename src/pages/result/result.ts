@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { ANSWER, DATA} from '../anwser/anwser';
+import { ANSWER, DATA } from '../anwser/anwser';
 import { HomePage } from '../home/home';
 /**
  * Generated class for the ResultPage page.
@@ -24,7 +24,7 @@ export class ResultPage {
   @ViewChild('pieCanvas') pieCanvas;
   pieChart: any;
   resultId: string;
-  result:ANSWER[];
+  result: ANSWER[];
   answer?: ANSWER[];
   nameSurvey: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private firestore: AngularFirestore) {
@@ -35,17 +35,17 @@ export class ResultPage {
     this.nameSurvey = this.navParams.get('name');
     this.answer = this.navParams.get('answer');
     console.log(this.nameSurvey);
-    
+
     const firestores = this.firestore.collection<ANSWER>('RESULT');
     firestores.valueChanges().subscribe(res => {
       this.result = res.filter(ele => ele.surveyUid == this.resultId);
       console.log(this.result);
-      
-       this.getPieChart(this.result);
+
+      this.getPieChart(this.result);
 
     })
 
-    
+
   }
 
   getChart(context, chartType, data, options?) {
@@ -58,6 +58,7 @@ export class ResultPage {
   getPieChart(dataPie: ANSWER[]) {
     let sourceCount = new Array<number>();
     let sourceAnswer = new Array<string>();
+
     dataPie.forEach(e => {
       sourceAnswer.push(e.answer);
       sourceCount.push(e.count);
@@ -68,13 +69,13 @@ export class ResultPage {
       datasets: [
         {
           data: sourceCount,
-          backgroundColor: ["#FF6384", "#E84162", "#FF6354", "#36A2EB","#FFEF49", "#FFCE56", "#000", "#FF8D47","#2CF6DB","#E85B4E"],
+          backgroundColor: ["#FF6384", "#E84162", "#FF6354", "#36A2EB", "#FFEF49", "#FFCE56", "#000", "#FF8D47", "#2CF6DB", "#E85B4E"],
         }]
     };
 
     return this.getChart(this.pieCanvas.nativeElement, "pie", data);
   }
-  goHome(){
+  goHome() {
     this.navCtrl.setRoot(HomePage);
   }
 

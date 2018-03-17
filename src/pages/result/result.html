@@ -9,14 +9,18 @@
 
 <ion-content>
   <ion-card>
-    <label>
-      Q: {{nameSurvey}}
-    </label>
+    <div>
+      <label class="question">
+        Q: {{nameSurvey}}
+      </label>
+    </div>
+
     <ion-card-content>
       <canvas #pieCanvas></canvas>
     </ion-card-content>
   </ion-card>
   <ion-list>
+    <label class="answer">Answer</label>
     <ion-item *ngFor="let item of result">
       <ion-item>
         {{item.answer}}: {{item.count?item.count:0}}

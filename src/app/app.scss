@@ -6,22 +6,29 @@ page-app {
     }
     ion-card .info {
         position: relative;
-        width: 150px;
+        width: 100%;
         height: 180px;
+    }
+    .name {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 5px;
     }
     img.avatar {
         position: absolute;
-        width: 100px;
-        height: 100px;
+        width: 130px;
+        height: 130px;
         border-radius: 50%;
         top: 7%;
         left: 5%;
         z-index: 2;
+        margin-left: 20%;
     }
     .userinfo {
         position: absolute;
         bottom: 6%;
         left: 8%;
+        top: 82%;
     }
     .ioncol-list {
         font-size: 20px;

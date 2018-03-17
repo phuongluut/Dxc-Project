@@ -1,5 +1,22 @@
 page-signup {
-  .invalid { 
-    border-bottom: 1px solid #FF6153; 
-  }
+    .invalid {
+        border-bottom: 1px solid red;
+    }
+    .button {
+        background-color: color($colors, green1);
+        margin-top: 10px;
+    }
+    .item-block {
+        padding-left: 0;
+    }
+    .button-ios.activated {
+        background-color: color($colors, secondary);
+    }
+    .label-ios[stacked] {
+        margin-left: 5px;
+    }
+    .item-ios.item-label-stacked .text-input,
+    .item-ios.item-label-floating .text-input{
+      margin-left: 2px;
+    }
 }

@@ -47,6 +47,8 @@ export class MyApp {
         unsubscribe();
       }
       this.username = user.email;
+      console.log(user.email);
+      
     });
   }
   
@@ -74,7 +76,7 @@ export class MyApp {
   //   this.nav.setRoot(page.component);
   // }
   goSurvey(){
-    this.nav.setRoot(PropertyPage);
+    this.nav.push(PropertyPage);
     this.menu.close();
     this.menu.swipeEnable(false);
     
@@ -85,7 +87,7 @@ export class MyApp {
     this.menu.swipeEnable(false);
   }
   goHome(){
-    this.nav.push(HomePage);
+    this.nav.setRoot(HomePage);
     this.menu.close();
     this.menu.swipeEnable(false);
   }

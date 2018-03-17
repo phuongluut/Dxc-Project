@@ -14,8 +14,19 @@ page-manage-survey {
         background-color: white;
         float: right;
     }
-    .iconPlus{
+    .iconPlus {
         padding-left: 2px;
         padding-top: 2px;
+        padding-right: 4px;
+    }
+    .item-ios {
+        padding-left: 0px;
+    }
+    .label-ios[stacked] {
+        margin-left: 5px;
+    }
+    .item-ios.item-label-stacked .text-input,
+    .item-ios.item-label-floating .text-input{
+        margin-left: 5px;
     }
 }

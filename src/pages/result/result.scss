@@ -7,10 +7,22 @@ page-result {
     .card-content-ios {
         margin-top: 10%;
     }
-    .item-ios {
-        padding-top: 10px;
-    }
-    .card-ios{
+    .card-ios {
         font-size: 2rem;
+    }
+    .question {
+        margin-left: 20px;
+        padding-bottom: 20px;
+    }
+    .list-ios>.item-block {
+        padding-left: 0px;
+    }
+    .item-ios.item-block .item-inner {
+        padding-right: 0px;
+        border-bottom: none;
+    }
+    .answer{
+        margin-left: 40%;
+        font-size: 20px;
     }
 }
