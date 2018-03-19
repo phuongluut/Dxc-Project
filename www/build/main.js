@@ -257,17 +257,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var ManageSurveyPage = (function () {
-    function ManageSurveyPage(navCtrl, navParams, _FB, _DB, _ALERT, _cfr) {
+    function ManageSurveyPage(navCtrl, navParams, _FB, _DB, _ALERT) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this._FB = _FB;
         this._DB = _DB;
         this._ALERT = _ALERT;
-        this._cfr = _cfr;
         this.name = '';
         this.docID = '';
         this.isEditable = false;
-        this.isDisappear = false;
         this.title = "";
         this._COLL = "";
         this.timeStart = this.calculateTime('+7');
@@ -383,13 +381,13 @@ var ManageSurveyPage = (function () {
     ], ManageSurveyPage.prototype, "container", void 0);
     ManageSurveyPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-manage-survey',template:/*ion-inline-start:"D:\DXC\surveyCloudFinal\src\pages\manage-survey\manage-survey.html"*/'<!--\n  Generated template for the ManageSurveyPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title> {{ title }} </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="saveSurvey(form.value)" [disabled]="!form.valid">\n        <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline" color="light"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form [formGroup]="form">\n    <ion-item>\n      <ion-label stacked>Question:</ion-label>\n      <ion-input type="text" formControlName="name"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Time start:</ion-label>\n      <ion-datetime displayFormat="YYYY-MM-DD HH:mm A" max="2999" formControlName="timeStart"></ion-datetime>\n    </ion-item>\n\n\n    <ion-item>\n      <ion-label stacked>Time end:</ion-label>\n      <ion-datetime displayFormat="YYYY-MM-DD HH:mm A" max="2999" formControlName="timeEnd"></ion-datetime>\n    </ion-item>\n\n    <div formArrayName="answers">\n      <div *ngFor="let answer of form.controls.answers.controls; let i=index">\n        <ion-item [formGroupName]="i">\n          <ion-label stacked>Answer {{ i + 1 }}:</ion-label>\n          <ion-input type="text" formControlName="answer"></ion-input>\n          <ion-icon ios="ios-close" md="md-close" item-right *ngIf="form.controls.answers.controls.length > 1" (click)="removeAnswer(i)"></ion-icon>\n        </ion-item>\n      </div>\n\n      <button (click)="addAnswer()" end class="addAnswer">\n        <label>Add answer </label> \n        <ion-icon ios="ios-add-circle-outline" md="md-add-circle" class="iconPlus"></ion-icon>\n      </button>\n\n    </div>\n\n  </form>\n</ion-content>\n'/*ion-inline-end:"D:\DXC\surveyCloudFinal\src\pages\manage-survey\manage-survey.html"*/,
+            selector: 'page-manage-survey',template:/*ion-inline-start:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\manage-survey\manage-survey.html"*/'<!--\n\n  Generated template for the ManageSurveyPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title> {{ title }} </ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only (click)="saveSurvey(form.value)" [disabled]="!form.valid">\n\n        <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline" color="light"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form [formGroup]="form">\n\n    <ion-item>\n\n      <ion-label stacked>Question:</ion-label>\n\n      <ion-input type="text" formControlName="name"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Time start:</ion-label>\n\n      <ion-datetime displayFormat="YYYY-MM-DD HH:mm A" max="2999" formControlName="timeStart"></ion-datetime>\n\n    </ion-item>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Time end:</ion-label>\n\n      <ion-datetime displayFormat="YYYY-MM-DD HH:mm A" max="2999" formControlName="timeEnd"></ion-datetime>\n\n    </ion-item>\n\n\n\n    <div formArrayName="answers">\n\n      <div *ngFor="let answer of form.controls.answers.controls; let i=index">\n\n        <ion-item [formGroupName]="i">\n\n          <ion-label stacked>Answer {{ i + 1 }}:</ion-label>\n\n          <ion-input type="text" formControlName="answer"></ion-input>\n\n          <ion-icon ios="ios-close" md="md-close" item-right *ngIf="form.controls.answers.controls.length > 1" (click)="removeAnswer(i)"></ion-icon>\n\n        </ion-item>\n\n      </div>\n\n\n\n      <button (click)="addAnswer()" end class="addAnswer">\n\n        <label>Add answer </label> \n\n        <ion-icon ios="ios-add-circle-outline" md="md-add-circle" class="iconPlus"></ion-icon>\n\n      </button>\n\n\n\n    </div>\n\n\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\manage-survey\manage-survey.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
             __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* ComponentFactoryResolver */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], ManageSurveyPage);
     return ManageSurveyPage;
 }());
@@ -479,7 +477,7 @@ var SignupPage = (function () {
     };
     SignupPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-signup',template:/*ion-inline-start:"D:\DXC\surveyCloudFinal\src\pages\signup\signup.html"*/'<ion-content padding>\n  <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>\n\n    <ion-item>\n      <ion-label stacked>Email</ion-label>\n      <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!signupForm.controls.email.valid && blur">\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Password</ion-label>\n      <ion-input formControlName="password" type="password" placeholder="Your password" [class.invalid]="!signupForm.controls.password.valid && blur">\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>First name</ion-label>\n      <ion-input formControlName="firstname" type="text" placeholder="Your firstname" [class.invalid]="!signupForm.controls.firstname.valid && blur">\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Last name</ion-label>\n      <ion-input formControlName="lastname" type="text" placeholder="Your lastname" [class.invalid]="!signupForm.controls.lastname.valid && blur">\n      </ion-input>\n    </ion-item>\n\n    <button ion-button block type="submit" [disabled]="!signupForm.valid">\n      Create an Account\n    </button>\n    <button ion-button block type="submit" (click)="goLogin()">\n      Sign In\n    </button>\n  </form>\n</ion-content>\n'/*ion-inline-end:"D:\DXC\surveyCloudFinal\src\pages\signup\signup.html"*/,
+            selector: 'page-signup',template:/*ion-inline-start:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\signup\signup.html"*/'<ion-content padding>\n\n  <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Email</ion-label>\n\n      <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!signupForm.controls.email.valid && blur">\n\n      </ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Password</ion-label>\n\n      <ion-input formControlName="password" type="password" placeholder="Your password" [class.invalid]="!signupForm.controls.password.valid && blur">\n\n      </ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>First name</ion-label>\n\n      <ion-input formControlName="firstname" type="text" placeholder="Your firstname" [class.invalid]="!signupForm.controls.firstname.valid && blur">\n\n      </ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Last name</ion-label>\n\n      <ion-input formControlName="lastname" type="text" placeholder="Your lastname" [class.invalid]="!signupForm.controls.lastname.valid && blur">\n\n      </ion-input>\n\n    </ion-item>\n\n\n\n    <button ion-button block type="submit" [disabled]="!signupForm.valid">\n\n      Create an Account\n\n    </button>\n\n    <button ion-button block type="submit" (click)="goLogin()">\n\n      Sign In\n\n    </button>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\signup\signup.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthProvider */],
@@ -630,7 +628,7 @@ var PropertyPage = (function () {
     };
     PropertyPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-property',template:/*ion-inline-start:"D:\DXC\surveyCloudFinal\src\pages\property\property.html"*/'<!--\n  Generated template for the PropertyPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="arrow-back" color="light"></ion-icon>\n    </button>\n    <ion-title>My Survey</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addSurvey()">\n        <ion-icon ios="ios-add-circle-outline" md="md-add-circle" class="avatar"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-row>\n    <ion-searchbar class="search" (ionInput)="getItems($event)"></ion-searchbar>\n  </ion-row>\n  <ion-list>\n    <ion-item-sliding *ngFor="let survey of filterItems">\n\n      <ion-item class="items" (click)="goResult()" >\n        <h2>{{ survey.name }}</h2>\n      </ion-item>\n\n      <ion-item-options side="right">\n        <ion-buttons>\n          <button ion-button icon-only (click)="deleteSurvey(survey)" color="danger" class="btn-d">\n            <ion-icon ios="ios-trash" md="md-trash"></ion-icon>\n          </button>\n        </ion-buttons>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"D:\DXC\surveyCloudFinal\src\pages\property\property.html"*/,
+            selector: 'page-property',template:/*ion-inline-start:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\property\property.html"*/'<!--\n\n  Generated template for the PropertyPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="arrow-back" color="light"></ion-icon>\n\n    </button>\n\n    <ion-title>My Survey</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only (click)="addSurvey()">\n\n        <ion-icon ios="ios-add-circle-outline" md="md-add-circle" class="avatar"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-row>\n\n    <ion-searchbar class="search" (ionInput)="getItems($event)"></ion-searchbar>\n\n  </ion-row>\n\n  <ion-list>\n\n    <ion-item-sliding *ngFor="let survey of filterItems">\n\n\n\n      <ion-item class="items" (click)="goResult()" >\n\n        <h2>{{ survey.name }}</h2>\n\n      </ion-item>\n\n\n\n      <ion-item-options side="right">\n\n        <ion-buttons>\n\n          <button ion-button icon-only (click)="deleteSurvey(survey)" color="danger" class="btn-d">\n\n            <ion-icon ios="ios-trash" md="md-trash"></ion-icon>\n\n          </button>\n\n        </ion-buttons>\n\n      </ion-item-options>\n\n    </ion-item-sliding>\n\n  </ion-list>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\property\property.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_4_angularfire2_firestore__["a" /* AngularFirestore */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], PropertyPage);
@@ -666,14 +664,14 @@ var map = {
 		269
 	],
 	"../pages/login/login.module": [
-		775,
+		774,
 		1
 	],
 	"../pages/manage-survey/manage-survey.module": [
 		332
 	],
 	"../pages/property/property.module": [
-		776,
+		775,
 		0
 	],
 	"../pages/result/result.module": [
@@ -781,7 +779,7 @@ var DashboardPage = (function () {
     };
     DashboardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-dashboard',template:/*ion-inline-start:"D:\DXC\surveyCloudFinal\src\pages\dashboard\dashboard.html"*/'<!--\n  Generated template for the DashboardPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content class="content">\n  <ion-card class="card-wallpaper">\n    <div class="info">\n      <img src="/assets/imgs/obama.png" alt="" class="avatar">\n      <div class="userinfo">\n        <h2 class="name">Obama</h2>\n        <p>obamab@dxc.com</p>\n      </div>\n    </div>\n  </ion-card>\n  <!-- end ion-card -->\n\n  <!-- start option -->\n  <div class="option">\n    <ion-grid>\n      <ion-row class="ionrow-list">\n        <ion-col col-12 class="ioncol-list">\n          <h2 (click)="pushSurvey()" class="assets">\n            <ion-icon ios="ios-list-outline" md="md-list" class="ioncol-icon"></ion-icon>\n            My Survey\n          </h2>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n  <!-- end option -->\n\n  <ion-row class="ionrow-list">\n    <ion-col col-12 class="ioncol-list">\n      <h2 class="assets" (click)="goLogin()" >\n        <ion-icon ios="ios-log-out" md="md-log-out" class="ioncol-icon"></ion-icon>\n        Log out\n      </h2>\n    </ion-col>\n  </ion-row>\n</ion-content>\n\n'/*ion-inline-end:"D:\DXC\surveyCloudFinal\src\pages\dashboard\dashboard.html"*/,
+            selector: 'page-dashboard',template:/*ion-inline-start:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\dashboard\dashboard.html"*/'<!--\n\n  Generated template for the DashboardPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="content">\n\n  <ion-card class="card-wallpaper">\n\n    <div class="info">\n\n      <img src="/assets/imgs/obama.png" alt="" class="avatar">\n\n      <div class="userinfo">\n\n        <h2 class="name">Obama</h2>\n\n        <p>obamab@dxc.com</p>\n\n      </div>\n\n    </div>\n\n  </ion-card>\n\n  <!-- end ion-card -->\n\n\n\n  <!-- start option -->\n\n  <div class="option">\n\n    <ion-grid>\n\n      <ion-row class="ionrow-list">\n\n        <ion-col col-12 class="ioncol-list">\n\n          <h2 (click)="pushSurvey()" class="assets">\n\n            <ion-icon ios="ios-list-outline" md="md-list" class="ioncol-icon"></ion-icon>\n\n            My Survey\n\n          </h2>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n  <!-- end option -->\n\n\n\n  <ion-row class="ionrow-list">\n\n    <ion-col col-12 class="ioncol-list">\n\n      <h2 class="assets" (click)="goLogin()" >\n\n        <ion-icon ios="ios-log-out" md="md-log-out" class="ioncol-icon"></ion-icon>\n\n        Log out\n\n      </h2>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\dashboard\dashboard.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]])
     ], DashboardPage);
@@ -871,7 +869,7 @@ var ResetPasswordPage = (function () {
     };
     ResetPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-reset-password',template:/*ion-inline-start:"D:\DXC\surveyCloudFinal\src\pages\reset-password\reset-password.html"*/'<ion-content padding>\n  <form [formGroup]="resetPasswordForm" (submit)="resetPassword()" novalidate>\n\n    <ion-item>\n      <ion-label stacked>Email</ion-label>\n      <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!resetPasswordForm.controls.email.valid && blur">\n      </ion-input>\n    </ion-item>\n\n    <button ion-button block type="submit" [disabled]="!resetPasswordForm.valid">\n      Reset your Password\n    </button>\n    <div>\n      <ion-row>\n        <ion-col block col-6>\n          <button ion-button block type="submit" (click)="goLogin()">\n            Sign In\n          </button>\n        </ion-col>\n        <ion-col block col-6>\n          <button ion-button block type="submit" (click)="goSignup()">\n            Sign Up\n          </button>\n        </ion-col>\n      </ion-row>\n    </div>\n  </form>\n</ion-content>\n'/*ion-inline-end:"D:\DXC\surveyCloudFinal\src\pages\reset-password\reset-password.html"*/,
+            selector: 'page-reset-password',template:/*ion-inline-start:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\reset-password\reset-password.html"*/'<ion-content padding>\n\n  <form [formGroup]="resetPasswordForm" (submit)="resetPassword()" novalidate>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Email</ion-label>\n\n      <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!resetPasswordForm.controls.email.valid && blur">\n\n      </ion-input>\n\n    </ion-item>\n\n\n\n    <button ion-button block type="submit" [disabled]="!resetPasswordForm.valid">\n\n      Reset your Password\n\n    </button>\n\n    <div>\n\n      <ion-row>\n\n        <ion-col block col-6>\n\n          <button ion-button block type="submit" (click)="goLogin()">\n\n            Sign In\n\n          </button>\n\n        </ion-col>\n\n        <ion-col block col-6>\n\n          <button ion-button block type="submit" (click)="goSignup()">\n\n            Sign Up\n\n          </button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </div>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\reset-password\reset-password.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthProvider */],
@@ -1024,16 +1022,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_facebook__ = __webpack_require__(772);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_angularfire2_firestore__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_anwser_anwser_module__ = __webpack_require__(269);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_manage_answer_manage_answer__ = __webpack_require__(773);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_result_result_module__ = __webpack_require__(333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_upload_service_upload_service__ = __webpack_require__(774);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_result_result_module__ = __webpack_require__(333);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_upload_service_upload_service__ = __webpack_require__(773);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -1073,8 +1069,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_5__pages_property_property__["a" /* PropertyPage */],
                 __WEBPACK_IMPORTED_MODULE_12__pages_dashboard_dashboard__["a" /* DashboardPage */],
                 __WEBPACK_IMPORTED_MODULE_14__pages_reset_password_reset_password__["a" /* ResetPasswordPage */],
-                __WEBPACK_IMPORTED_MODULE_15__pages_signup_signup__["a" /* SignupPage */],
-                __WEBPACK_IMPORTED_MODULE_24__components_manage_answer_manage_answer__["a" /* ManageAnswerComponent */]
+                __WEBPACK_IMPORTED_MODULE_15__pages_signup_signup__["a" /* SignupPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -1094,7 +1089,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_18_angularfire2_auth__["b" /* AngularFireAuthModule */],
                 __WEBPACK_IMPORTED_MODULE_22_angularfire2_firestore__["b" /* AngularFirestoreModule */],
                 __WEBPACK_IMPORTED_MODULE_23__pages_anwser_anwser_module__["AnwserPageModule"],
-                __WEBPACK_IMPORTED_MODULE_25__pages_result_result_module__["ResultPageModule"]
+                __WEBPACK_IMPORTED_MODULE_24__pages_result_result_module__["ResultPageModule"]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [
@@ -1104,8 +1099,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_5__pages_property_property__["a" /* PropertyPage */],
                 __WEBPACK_IMPORTED_MODULE_12__pages_dashboard_dashboard__["a" /* DashboardPage */],
                 __WEBPACK_IMPORTED_MODULE_14__pages_reset_password_reset_password__["a" /* ResetPasswordPage */],
-                __WEBPACK_IMPORTED_MODULE_15__pages_signup_signup__["a" /* SignupPage */],
-                __WEBPACK_IMPORTED_MODULE_24__components_manage_answer_manage_answer__["a" /* ManageAnswerComponent */]
+                __WEBPACK_IMPORTED_MODULE_15__pages_signup_signup__["a" /* SignupPage */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__["a" /* StatusBar */],
@@ -1116,7 +1110,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_13__providers_auth_auth__["a" /* AuthProvider */],
                 __WEBPACK_IMPORTED_MODULE_18_angularfire2_auth__["a" /* AngularFireAuth */],
                 __WEBPACK_IMPORTED_MODULE_21__ionic_native_facebook__["a" /* Facebook */],
-                __WEBPACK_IMPORTED_MODULE_26__providers_upload_service_upload_service__["a" /* UploadServiceProvider */]
+                __WEBPACK_IMPORTED_MODULE_25__providers_upload_service_upload_service__["a" /* UploadServiceProvider */]
             ]
         })
     ], AppModule);
@@ -1199,7 +1193,7 @@ var AnwserPage = (function () {
     };
     AnwserPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-anwser',template:/*ion-inline-start:"D:\DXC\surveyCloudFinal\src\pages\anwser\anwser.html"*/'<!--\n  Generated template for the AnwserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>ANSWER</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<!-- (submit)="doSubmit($event)" -->\n<ion-content padding>\n  <!-- <div class="formAnswer"> -->\n  <ion-item calss="formQuestion">\n    <div>\n      <label class="question">\n        Q: {{nameSurvey}}\n      </label>\n    </div>\n    <hr>\n    <!-- </div> -->\n    <form [formGroup]="answerForm">\n      <ion-list radio-group formControlName="listanswer" [(ngModel)]="theanswer">\n        <ion-item *ngFor="let ans of result">\n          <ion-label>{{ans.answer}} </ion-label>\n          <ion-radio [value]="ans"></ion-radio>\n        </ion-item>\n      </ion-list>\n      <button block outline ion-button (click)="addAnswer(theanswer)">Vote</button>\n    </form>\n  </ion-item>\n\n</ion-content>\n'/*ion-inline-end:"D:\DXC\surveyCloudFinal\src\pages\anwser\anwser.html"*/,
+            selector: 'page-anwser',template:/*ion-inline-start:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\anwser\anwser.html"*/'<!--\n\n  Generated template for the AnwserPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>ANSWER</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!-- (submit)="doSubmit($event)" -->\n\n<ion-content padding>\n\n  <!-- <div class="formAnswer"> -->\n\n  <ion-item calss="formQuestion">\n\n    <div>\n\n      <label class="question">\n\n        Q: {{nameSurvey}}\n\n      </label>\n\n    </div>\n\n    <hr>\n\n    <!-- </div> -->\n\n    <form [formGroup]="answerForm">\n\n      <ion-list radio-group formControlName="listanswer" [(ngModel)]="theanswer">\n\n        <ion-item *ngFor="let ans of result">\n\n          <ion-label>{{ans.answer}} </ion-label>\n\n          <ion-radio [value]="ans"></ion-radio>\n\n        </ion-item>\n\n      </ion-list>\n\n      <button block outline ion-button (click)="addAnswer(theanswer)">Vote</button>\n\n    </form>\n\n  </ion-item>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\anwser\anwser.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2_angularfire2_firestore__["a" /* AngularFirestore */]])
@@ -1370,7 +1364,7 @@ var ResultPage = (function () {
     ], ResultPage.prototype, "pieCanvas", void 0);
     ResultPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-result',template:/*ion-inline-start:"D:\DXC\surveyCloudFinal\src\pages\result\result.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Result</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card>\n    <div>\n      <label class="question">\n        Q: {{nameSurvey}}\n      </label>\n    </div>\n\n    <ion-card-content>\n      <canvas #pieCanvas></canvas>\n    </ion-card-content>\n  </ion-card>\n  <ion-list>\n    <label class="answer">Answer</label>\n    <ion-item *ngFor="let item of result">\n      <ion-item>\n        {{item.answer}}: {{item.count?item.count:0}}\n      </ion-item>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"D:\DXC\surveyCloudFinal\src\pages\result\result.html"*/,
+            selector: 'page-result',template:/*ion-inline-start:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\result\result.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Result</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-card>\n\n    <div>\n\n      <label class="question">\n\n        Q: {{nameSurvey}}\n\n      </label>\n\n    </div>\n\n\n\n    <ion-card-content>\n\n      <canvas #pieCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n  <ion-list>\n\n    <label class="answer">Answer</label>\n\n    <ion-item *ngFor="let item of result">\n\n      <ion-item>\n\n        {{item.answer}}: {{item.count?item.count:0}}\n\n      </ion-item>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\result\result.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3_angularfire2_firestore__["a" /* AngularFirestore */]])
     ], ResultPage);
@@ -1815,7 +1809,7 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"D:\DXC\surveyCloudFinal\src\pages\login\login.html"*/'<ion-content padding class="content-back">\n  <ion-content padding class="content">\n    <ion-content padding class="content-login">\n      <form [formGroup]="loginForm" (submit)="loginUser()" novalidate col-12>\n\n        <ion-row>\n          <ion-col col-12>\n            <img src="/assets/imgs/logoicon.png" alt="" class="icon-logo">\n            <h2 class="tile"><img src="/assets/imgs/logo1.png" alt="" class="avatar"></h2>\n          \n          </ion-col>\n        </ion-row>\n        <ion-item class="person">\n          <ion-icon item-start ios="ios-person" md="md-person" class="icon-user" color="green1" ></ion-icon>\n          <ion-input class="btn" formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>\n        </ion-item>\n\n        <ion-item class="pass">\n          <ion-icon item-start ios="ios-key" md="md-key" class="icon-pass" color="green1"></ion-icon>\n          <ion-input class="btn" formControlName="password" type="password" placeholder="Your password" [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>\n        </ion-item>\n\n        <button ion-button block type="submit" class="submit-btn" [disabled]="!loginForm.valid">\n          Login\n        </button>\n\n      </form>\n\n      <button ion-button block clear (click)="goToSignup()" class="signUp" style="font-weight: bold;">\n        Create a new account\n      </button>\n\n      <button ion-button block clear (click)="goToResetPassword()" class="forgotPass" style="font-weight: bold;">\n        I forgot my password\n      </button>\n\n      <ion-col>\n        <ion-icon ios="logo-google" md="logo-google" class="gg" (click)="loginGoogle()"></ion-icon>\n        <ion-icon ios="logo-facebook" md="logo-facebook" class="fb" (click)="loginFace()"></ion-icon>\n      </ion-col>\n    </ion-content>\n  </ion-content>\n</ion-content>'/*ion-inline-end:"D:\DXC\surveyCloudFinal\src\pages\login\login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\login\login.html"*/'<ion-content padding class="content-back">\n\n  <ion-content padding class="content">\n\n    <ion-content padding class="content-login">\n\n      <form [formGroup]="loginForm" (submit)="loginUser()" novalidate col-12>\n\n\n\n        <ion-row>\n\n          <ion-col col-12>\n\n            <img src="/assets/imgs/logoicon.png" alt="" class="icon-logo">\n\n            <h2 class="tile"><img src="/assets/imgs/logo1.png" alt="" class="avatar"></h2>\n\n          \n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-item class="person">\n\n          <ion-icon item-start ios="ios-person" md="md-person" class="icon-user" color="green1" ></ion-icon>\n\n          <ion-input class="btn" formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>\n\n        </ion-item>\n\n\n\n        <ion-item class="pass">\n\n          <ion-icon item-start ios="ios-key" md="md-key" class="icon-pass" color="green1"></ion-icon>\n\n          <ion-input class="btn" formControlName="password" type="password" placeholder="Your password" [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>\n\n        </ion-item>\n\n\n\n        <button ion-button block type="submit" class="submit-btn" [disabled]="!loginForm.valid">\n\n          Login\n\n        </button>\n\n\n\n      </form>\n\n\n\n      <button ion-button block clear (click)="goToSignup()" class="signUp" style="font-weight: bold;">\n\n        Create a new account\n\n      </button>\n\n\n\n      <button ion-button block clear (click)="goToResetPassword()" class="forgotPass" style="font-weight: bold;">\n\n        I forgot my password\n\n      </button>\n\n\n\n      <ion-col>\n\n        <ion-icon ios="logo-google" md="logo-google" class="gg" (click)="loginGoogle()"></ion-icon>\n\n        <ion-icon ios="logo-facebook" md="logo-facebook" class="fb" (click)="loginFace()"></ion-icon>\n\n      </ion-col>\n\n    </ion-content>\n\n  </ion-content>\n\n</ion-content>'/*ion-inline-end:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\login\login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
@@ -1890,9 +1884,8 @@ var MyApp = (function () {
             else {
                 _this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
                 unsubscribe();
+                _this.username = user.email;
             }
-            _this.username = user.email;
-            console.log(user.email);
         });
     }
     MyApp.prototype.ionViewDidEnter = function () {
@@ -1937,7 +1930,7 @@ var MyApp = (function () {
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-app',template:/*ion-inline-start:"D:\DXC\surveyCloudFinal\src\app\app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content class="content">\n    <ion-card class="card-wallpaper">\n      <div class="info">\n        <img src="/assets/imgs/obama.png" alt="" class="avatar">\n        <div class="userinfo">\n          <h2 class="name"> {{ username }} </h2>\n          <!-- <p>obamab@dxc.com</p> -->\n        </div>\n      </div>\n    </ion-card>\n    <!-- end ion-card -->\n    <!-- <div class="option">\n      <ion-grid>\n        <ion-row class="ionrow-list">\n          <ion-col col-12 class="ioncol-list">\n            <h2 class="assets" (click)="goHome()">\n              <ion-icon ios="ios-home-outline" md="md-home" class="ioncol-icon"></ion-icon>\n              Home </h2>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div> -->\n    <!-- start option -->\n    <div class="option">\n      <ion-grid>\n        <ion-row class="ionrow-list">\n          <ion-col col-12 class="ioncol-list">\n            <h2 class="assets" (click)="goSurvey()">\n              <ion-icon ios="ios-list-outline" md="md-list" class="ioncol-icon"></ion-icon>\n              My Survey\n            </h2>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n    <!-- end option -->\n\n    <ion-row class="ionrow-list">\n      <ion-col col-12 class="ioncol-list">\n        <h2 class="assets" (click)="goLogin()">\n          <ion-icon ios="ios-log-out" md="md-log-out" class="ioncol-icon"></ion-icon>\n          Log out\n        </h2>\n      </ion-col>\n    </ion-row>\n  </ion-content>\n\n</ion-menu>\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"D:\DXC\surveyCloudFinal\src\app\app.html"*/
+            selector: 'page-app',template:/*ion-inline-start:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\app\app.html"*/'<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content class="content">\n\n    <ion-card class="card-wallpaper">\n\n      <div class="info">\n\n        <img src="/assets/imgs/obama.png" alt="" class="avatar">\n\n        <div class="userinfo">\n\n          <h2 class="name"> {{ username }} </h2>\n\n          <!-- <p>obamab@dxc.com</p> -->\n\n        </div>\n\n      </div>\n\n    </ion-card>\n\n    <!-- end ion-card -->\n\n    <div class="option">\n\n      <ion-grid>\n\n        <ion-row class="ionrow-list">\n\n          <ion-col col-12 class="ioncol-list">\n\n            <h2 class="assets" (click)="goHome()">\n\n              <ion-icon ios="ios-home-outline" md="md-home" class="ioncol-icon"></ion-icon>\n\n              Home </h2>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n    <!-- start option -->\n\n    <div class="option">\n\n      <ion-grid>\n\n        <ion-row class="ionrow-list">\n\n          <ion-col col-12 class="ioncol-list">\n\n            <h2 class="assets" (click)="goSurvey()">\n\n              <ion-icon ios="ios-list-outline" md="md-list" class="ioncol-icon"></ion-icon>\n\n              My Survey\n\n            </h2>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n    <!-- end option -->\n\n\n\n    <ion-row class="ionrow-list">\n\n      <ion-col col-12 class="ioncol-list">\n\n        <h2 class="assets" (click)="goLogin()">\n\n          <ion-icon ios="ios-log-out" md="md-log-out" class="ioncol-icon"></ion-icon>\n\n          Log out\n\n        </h2>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _e || Object])
     ], MyApp);
@@ -2016,43 +2009,6 @@ var AuthServiceProvider = (function () {
 /***/ }),
 
 /***/ 773:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ManageAnswerComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var ManageAnswerComponent = (function () {
-    function ManageAnswerComponent() {
-        console.log('Hello ManageAnswerComponent Component');
-        this.text = 'Hello World';
-    }
-    ManageAnswerComponent.prototype.removeAnswer = function () {
-        this._ref.destroy();
-    };
-    ManageAnswerComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'manage-answer',template:/*ion-inline-start:"D:\DXC\surveyCloudFinal\src\components\manage-answer\manage-answer.html"*/'<ion-item>\n    <ion-label stacked>Answer:</ion-label>\n    <ion-input type="text" formControlName="answer" [(ngModel)]="answer"></ion-input>\n    <ion-icon ios="ios-close" md="md-close" item-right (click)="removeAnswer()"></ion-icon>\n</ion-item>'/*ion-inline-end:"D:\DXC\surveyCloudFinal\src\components\manage-answer\manage-answer.html"*/
-        }),
-        __metadata("design:paramtypes", [])
-    ], ManageAnswerComponent);
-    return ManageAnswerComponent;
-}());
-
-//# sourceMappingURL=manage-answer.js.map
-
-/***/ }),
-
-/***/ 774:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2138,7 +2094,6 @@ var HomePage = (function () {
     }
     HomePage.prototype.goAnswer = function (id, name) {
         var _this = this;
-        console.log(name);
         var userId = __WEBPACK_IMPORTED_MODULE_5_firebase__["auth"]().currentUser.uid;
         this.firestore.collection('HISTORY').valueChanges().subscribe(function (res) {
             var filter = res.find(function (ele) {
@@ -2190,7 +2145,6 @@ var HomePage = (function () {
                 var author = _this.users.find(function (user) {
                     return user.userUid.indexOf(survey.userUid) > -1;
                 });
-                console.log({ data: survey });
                 return { data: survey, author: author };
             });
             _this.filterItems = sourceSurveys;
@@ -2240,12 +2194,12 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\DXC\surveyCloudFinal\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title class="title">T-SURVEY</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addSurvey()">\n        <ion-icon ios="ios-add-circle-outline" md="md-add-circle" class="avatar"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-row>\n    <ion-searchbar class="search" (ionInput)="getItems($event)"></ion-searchbar>\n  </ion-row>\n  <ion-list>\n    <ion-item-sliding *ngFor="let survey of filterItems">\n      <ion-item class="items" (click)="goAnswer(survey.data?.surveyUid ,survey.data?.name)">\n        <h2>{{ survey.data?.name }}</h2>\n        <p>\n          Author: {{ survey.author?.email }}\n        </p>\n      </ion-item>\n    </ion-item-sliding>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"D:\DXC\surveyCloudFinal\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title class="title">T-SURVEY</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only (click)="addSurvey()">\n\n        <ion-icon ios="ios-add-circle-outline" md="md-add-circle" class="avatar"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-row>\n\n    <ion-searchbar class="search" (ionInput)="getItems($event)"></ion-searchbar>\n\n  </ion-row>\n\n  <ion-list>\n\n    <ion-item-sliding *ngFor="let survey of filterItems">\n\n      <ion-item class="items" (click)="goAnswer(survey.data?.surveyUid ,survey.data?.name)">\n\n        <h2>{{ survey.data?.name }}</h2>\n\n        <p>\n\n          Author: {{ survey.author?.email }}\n\n        </p>\n\n      </ion-item>\n\n    </ion-item-sliding>\n\n  </ion-list>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\phuongluuh\Desktop\Dxc-Project\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4_angularfire2_firestore__["a" /* AngularFirestore */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angularfire2_firestore__["a" /* AngularFirestore */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_4_angularfire2_firestore__["a" /* AngularFirestore */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=home.js.map

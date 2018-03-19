@@ -13,7 +13,6 @@ import { SignupPage } from '../signup/signup';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Facebook } from '@ionic-native/facebook'
 
 @IonicPage({
   name: 'login'

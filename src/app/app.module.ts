@@ -26,12 +26,8 @@ import { Facebook } from '@ionic-native/facebook';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AnwserPageModule } from '../pages/anwser/anwser.module';
-import { ManageAnswerComponent } from '../components/manage-answer/manage-answer';
 import { ResultPageModule } from '../pages/result/result.module';
 import { UploadServiceProvider } from '../providers/upload-service/upload-service';
-
-
-
 
 @NgModule({
   declarations: [
@@ -41,8 +37,7 @@ import { UploadServiceProvider } from '../providers/upload-service/upload-servic
     PropertyPage,
     DashboardPage,
     ResetPasswordPage,
-    SignupPage,
-    ManageAnswerComponent
+    SignupPage
   ],
   imports: [ 
     BrowserModule,
@@ -64,8 +59,7 @@ import { UploadServiceProvider } from '../providers/upload-service/upload-servic
     PropertyPage,
     DashboardPage,
     ResetPasswordPage,
-    SignupPage,
-    ManageAnswerComponent
+    SignupPage
   ],
   providers: [
     StatusBar,

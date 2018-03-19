@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, NavController, MenuController } from 'ionic-angular';
+import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -9,9 +9,7 @@ import { PropertyPage } from '../pages/property/property';
 import { environment } from '../environments/environment';
 import firebase from 'firebase';
 import { LoginPage } from '../pages/login/login';
-import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ManageSurveyPage} from '../pages/manage-survey/manage-survey';
-import { ResultPage } from '../pages/result/result';
 
 // import { AngularFirestore } from 'angularfire2/firestore';
 @Component({
@@ -27,8 +25,12 @@ export class MyApp {
 
   username: string;
 
+  users: any[];
+
   constructor(private menu: MenuController,public platform: Platform, 
-    public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    public statusBar: StatusBar, public splashScreen: SplashScreen, 
+    // public firestore: AngularFirestore
+  ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -45,10 +47,8 @@ export class MyApp {
       } else {
         this.rootPage = HomePage;
         unsubscribe();
-      }
-      this.username = user.email;
-      console.log(user.email);
-      
+        this.username = user.email;
+      }      
     });
   }
   
@@ -92,9 +92,11 @@ export class MyApp {
     this.menu.swipeEnable(false);
   }
 
-  // getUserUid() {
-  //   this.afs.collection('USER').valueChanges().subscribe(users => {
-  //     console.log(users);
-  //   })
+  // getUsers() {
+  //   this.firestore.collection('USER').valueChanges().subscribe(users => {
+  //     this.users = users;
+  //   });
+  //   console.log(this.users);
+    
   // }
 }

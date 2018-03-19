@@ -1,7 +1,5 @@
-
-import { PropertyPage } from './../property/property';
 import { Component } from '@angular/core';
-import { NavController, NavParams, MenuController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { ManageSurveyPage } from '../manage-survey/manage-survey';
 

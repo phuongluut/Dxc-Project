@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { AuthProvider } from '../../providers/auth/auth';
-import { LoginPage } from '../login/login';
 import { DashboardPage } from '../dashboard/dashboard';
-import { Facebook } from '@ionic-native/facebook';
 import { DatabaseProvider } from '../../providers/database/database';
-import { AnwserPage, History } from '../anwser/anwser'; 
+import { History } from '../anwser/anwser'; 
 import { AngularFirestore } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
 
@@ -41,8 +38,6 @@ export class HomePage {
     }
   }
   goAnswer(id,name) {
-    
-    console.log(name);
     let userId= firebase.auth().currentUser.uid;
     this.firestore.collection<History>('HISTORY').valueChanges().subscribe(res => {
       let filter = res.find(ele => {        
@@ -95,9 +90,7 @@ export class HomePage {
       let sourceSurveys:SURVEY[] = surveys.map(survey => {        
         let author = this.users.find(user => {
           return user.userUid.indexOf(survey.userUid) > -1          
-        })
-        console.log({data: survey});
-        
+        })        
         return {data:survey,author:author}
       })
       this.filterItems = sourceSurveys;

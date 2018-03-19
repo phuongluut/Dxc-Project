@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { PagesAnwserFilterPipe } from '../../pipes/pages-anwser-filter/pages-anwser-filter';
 import {
   FormGroup,
   FormControl
 } from '@angular/forms';
-import { HomePage } from '../home/home';
-import { DatabaseProvider } from '../../providers/database/database';
 import * as firebase from 'firebase';
 /**
  * Generated class for the AnwserPage page.

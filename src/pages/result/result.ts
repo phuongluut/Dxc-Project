@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { ANSWER, DATA } from '../anwser/anwser';
+import { ANSWER } from '../anwser/anwser';
 import { HomePage } from '../home/home';
 /**
  * Generated class for the ResultPage page.

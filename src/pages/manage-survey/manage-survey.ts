@@ -1,9 +1,8 @@
 'use strict'
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, DateTime } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
-import { Result } from './answer.interface';
 import * as firebase from 'firebase';
 // import { ManageAnswerComponent } from "../../components/manage-answer/manage-answer";
 /**
@@ -31,18 +30,14 @@ export class ManageSurveyPage implements OnInit {
   public timeEnd: any;
   public answers: any;
   public isEditable: boolean = false;
-  private isDisappear: boolean = false;
   public title: string = "";
   private _COLL: string = "";
-  private surveyUid: string;
-  private userUid: string;
-  private answerUid: string;
   filterItems: any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public _FB: FormBuilder,
     public _DB: DatabaseProvider,
-    private _ALERT: AlertController, private _cfr: ComponentFactoryResolver) {
+    private _ALERT: AlertController) {
     this.timeStart = this.calculateTime('+7');
     this.timeEnd = this.calculateTime('+7');
     this._COLL = "SURVEY";  
